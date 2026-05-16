@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lumient: secure enterprise AI software and services for global investment banks. On-prem AI infrastructure for confidential workflows." />
+  <title>Lumient: Secure Enterprise AI for Banks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:           #0B0B0D;
+      --bg-elevated:  #131316;
+      --fg:           #ECEAE3;
+      --fg-soft:      #B8B4A9;
+      --fg-muted:     #6A6862;
+      --rule:         rgba(236, 234, 227, 0.10);
+      --rule-bright:  rgba(236, 234, 227, 0.22);
+      --accent:       #C9F265;
+      --accent-dim:   rgba(201, 242, 101, 0.16);
+
+      --font-display: 'Onest', system-ui, -apple-system, sans-serif;
+      --font-body:    'Onest', system-ui, -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* subtle noise overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      background-image:
+        radial-gradient(circle at 50% 50%, transparent 0%, rgba(11, 11, 13, 0.4) 100%);
+    }
+
+    /* grid container */
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 0;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      padding: 1.4rem clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .topbar-left {
+      display: flex;
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .topbar-left .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .topbar-right {
+      display: flex;
+      gap: 1.4rem;
+    }
+
+    .topbar-right span:not(:last-child)::after {
+      content: " ·";
+      margin-left: 1.4rem;
+      color: var(--rule-bright);
+    }
+
+    /* HERO */
+    .hero {
+      padding: clamp(5rem, 12vw, 10rem) clamp(1.5rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 4vw, 3rem);
+      max-width: 1600px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: "[";
+      color: var(--fg-muted);
+    }
+
+    .hero-eyebrow::after {
+      content: "]";
+      color: var(--fg-muted);
+    }
+
+    /* MASSIVE WORDMARK (SVG with vector paths from Onest 900 + dot at exact font coords) */
+    .wordmark-svg {
+      display: block;
+      width: 100%;
+      max-width: 1400px;
+      height: auto;
+      color: var(--fg);
+      margin: 0;
+      padding: 0;
+    }
+
+    .wordmark-svg .wm-dot {
+      fill: var(--accent);
+    }
+
+    /* Palantir-style letter-by-letter reveal */
+    @keyframes wm-letter-in {
+      from {
+        transform: translateY(35%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .wordmark-svg g path {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: wm-letter-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .wordmark-svg g path:nth-child(1) { animation-delay: 0.05s; }
+    .wordmark-svg g path:nth-child(2) { animation-delay: 0.12s; }
+    .wordmark-svg g path:nth-child(3) { animation-delay: 0.19s; }
+    .wordmark-svg g path:nth-child(4) { animation-delay: 0.26s; }
+    .wordmark-svg g path:nth-child(5) { animation-delay: 0.33s; }
+    .wordmark-svg g path:nth-child(6) { animation-delay: 0.40s; }
+    .wordmark-svg g path:nth-child(7) { animation-delay: 0.47s; }
+
+    @keyframes wm-dot-in {
+      from {
+        transform: scale(0);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .wordmark-svg .wm-dot {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: wm-dot-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s both;
+    }
+
+    @keyframes hero-fade-up {
+      from { transform: translateY(16px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero .tagline {
+      animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+    }
+
+    .hero .hero-rule {
+      animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wordmark-svg g path,
+      .wordmark-svg .wm-dot,
+      .hero .tagline,
+      .hero .hero-rule {
+        animation: none;
+      }
+    }
+
+    /* Scroll-triggered reveal for sections below the hero */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children within a revealed section */
+    .reveal .section-label,
+    .reveal .what-heading,
+    .reveal .what-body,
+    .reveal .cap,
+    .reveal .founder-card,
+    .reveal .contact-grid .what-heading {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.is-visible .section-label              { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .what-heading               { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .what-body                  { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .cap:nth-child(1)           { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .cap:nth-child(2)           { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .cap:nth-child(3)           { transition-delay: 0.35s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .founder-card:nth-child(1)  { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+    .reveal.is-visible .founder-card:nth-child(2)  { transition-delay: 0.35s; opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .reveal .section-label,
+      .reveal .what-heading,
+      .reveal .what-body,
+      .reveal .cap,
+      .reveal .founder-card,
+      .reveal .contact-grid .what-heading {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    .tagline {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-size: clamp(1.5rem, 2.6vw, 2.6rem);
+      line-height: 1.2;
+      color: var(--fg-soft);
+      max-width: 30ch;
+      letter-spacing: -0.015em;
+    }
+
+    .tagline strong {
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    /* RULE + DETAIL */
+    .hero-rule {
+      width: clamp(3rem, 5vw, 5rem);
+      height: 1px;
+      background: var(--accent);
+      margin-top: 1rem;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 0 clamp(1.5rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem);
+      max-width: 1600px;
+      width: 100%;
+    }
+
+    .section {
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-label .num {
+      color: var(--accent);
+    }
+
+    .what-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .what-heading {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2rem, 3.6vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--fg);
+    }
+
+    .what-heading em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .what-body {
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 1.25vw, 1.3rem);
+      line-height: 1.55;
+      color: var(--fg-soft);
+      max-width: 50ch;
+    }
+
+    .what-body p + p {
+      margin-top: 1.4rem;
+    }
+
+    /* CAPABILITIES list */
+    .caps {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .cap {
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .cap-content {
+      display: grid;
+      grid-template-columns: minmax(0, 12rem) 1fr;
+      gap: clamp(1rem, 3vw, 3rem);
+      align-items: baseline;
+    }
+
+    .cap-title {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
+      letter-spacing: -0.01em;
+      color: var(--fg);
+    }
+
+    .cap-desc {
+      font-family: var(--font-body);
+      font-size: clamp(0.95rem, 1.05vw, 1.1rem);
+      line-height: 1.55;
+      color: var(--fg-soft);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .founders-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    .founder-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .founder-name {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+      letter-spacing: -0.015em;
+      color: var(--fg);
+    }
+
+    .founder-role {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-link {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1rem, 1.3vw, 1.25rem);
+      letter-spacing: -0.005em;
+      color: var(--fg);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .contact-link::after {
+      content: "↗";
+      font-size: 0.85em;
+      color: var(--accent);
+      transition: transform 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--accent);
+    }
+
+    .contact-link:hover::after {
+      transform: translate(4px, -4px);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 1.4rem clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    footer .left {
+      display: flex;
+      gap: 1.4rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      .what-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .founders-list {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .cap-content {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <svg class="wordmark-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 -970 3898 1275" preserveAspectRatio="xMinYMid meet" aria-label="Lumient" role="img">
+        <g transform="scale(1, -1)" fill="currentColor">
+          <path d="M67 0V708H248V167H587V0Z" />
+          <path d="M906 -8Q785 -8 718.5 52.5Q652 113 652 234V527H829V248Q829 222 836.0 200.5Q843 179 860.5 166.0Q878 153 907 153Q940 153 954.5 168.0Q969 183 972.5 205.5Q976 228 976 248V527H1152V234Q1152 105 1085.5 48.5Q1019 -8 906 -8Z" />
+          <path d="M1245 0V527H1401L1417 471Q1440 502 1466.5 516.0Q1493 530 1517.0 533.5Q1541 537 1555 537Q1597 537 1634.5 522.5Q1672 508 1697 466Q1720 496 1746.5 511.0Q1773 526 1799.5 531.5Q1826 537 1850 537Q1914 537 1953.0 511.0Q1992 485 2010.5 438.0Q2029 391 2029 327V0H1852V294Q1852 306 1850.5 320.0Q1849 334 1843.0 346.5Q1837 359 1826.0 367.5Q1815 376 1795 376Q1774 376 1761.0 368.0Q1748 360 1740.5 347.0Q1733 334 1730.0 317.5Q1727 301 1727 284V0H1550V295Q1550 306 1548.0 319.5Q1546 333 1540.0 346.0Q1534 359 1521.5 367.5Q1509 376 1487 376Q1456 376 1442.0 359.0Q1428 342 1425.0 319.0Q1422 296 1422 279V0Z" />
+          <path d="M2119 0V527H2296V0Z" />
+          <path d="M2640 -8Q2559 -8 2498.5 24.5Q2438 57 2404.5 117.0Q2371 177 2371 260Q2371 343 2405.0 405.5Q2439 468 2500.0 503.0Q2561 538 2642 538Q2700 538 2746.0 520.0Q2792 502 2825.0 468.0Q2858 434 2875.5 386.0Q2893 338 2893 278Q2893 261 2891.5 245.5Q2890 230 2886 213H2546Q2548 194 2558.5 177.0Q2569 160 2588.0 150.0Q2607 140 2636 140Q2660 140 2677.5 145.5Q2695 151 2706.0 160.0Q2717 169 2720 178H2893Q2879 113 2841.5 71.5Q2804 30 2751.5 11.0Q2699 -8 2640 -8ZM2549 328H2727Q2727 343 2718.5 359.5Q2710 376 2690.5 387.0Q2671 398 2639 398Q2608 398 2588.0 387.0Q2568 376 2558.5 359.5Q2549 343 2549 328Z" />
+          <path d="M2967 0V527H3130L3140 479Q3165 505 3193.5 517.5Q3222 530 3249.0 534.0Q3276 538 3295 538Q3369 538 3411.5 504.0Q3454 470 3472.0 414.0Q3490 358 3490 291V0H3313V276Q3313 292 3309.5 309.5Q3306 327 3297.5 342.0Q3289 357 3274.0 366.5Q3259 376 3235 376Q3204 376 3183.5 362.0Q3163 348 3153.5 324.5Q3144 301 3144 272V0Z" />
+          <path d="M3836 0Q3766 0 3716.5 15.0Q3667 30 3640.5 68.5Q3614 107 3614 180V369H3541V527H3614V658H3791V527H3888V369H3791V207Q3791 188 3797.5 173.5Q3804 159 3835 159H3882V0Z" />
+        </g>
+        <circle class="wm-dot" cx="2208" cy="-668" r="107.0" />
+      </svg>
+
+      <p class="tagline">
+        Secure enterprise AI infrastructure for <strong>global investment banks.</strong>
+      </p>
+
+      <div class="hero-rule"></div>
+    </section>
+
+    <main>
+      <!-- WHAT WE DO -->
+      <section class="section reveal">
+        <div class="section-label">
+          <span>What we do</span>
+        </div>
+
+        <div class="what-grid">
+          <h2 class="what-heading">
+            On-prem AI<br/>that runs <em>inside</em><br/>the bank.
+          </h2>
+
+          <div class="what-body">
+            <p>
+              Lumient builds and deploys AI infrastructure inside global investment banks. We provide software and services for workflows where data privacy is non-negotiable.
+            </p>
+            <p>
+              We provide enterprise AI software, deployment services, and ongoing support for institutions that cannot send confidential data to cloud LLMs. Our platform runs entirely inside bank-controlled environments and connects to internal systems, documents, and workflows.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CAPABILITIES -->
+      <section class="section reveal">
+        <div class="section-label">
+          <span>Software &amp; Services</span>
+        </div>
+
+        <div class="caps">
+          <div class="cap">
+            <div class="cap-content">
+              <div class="cap-title">Software</div>
+              <div class="cap-desc">On-prem AI platform for document analysis, workflow automation, and citation-grounded outputs across confidential bank data.</div>
+            </div>
+          </div>
+          <div class="cap">
+            <div class="cap-content">
+              <div class="cap-title">Deployment</div>
+              <div class="cap-desc">Implementation services for on-prem AI infrastructure on bank-controlled hardware. Integrated with bank IT and existing procurement.</div>
+            </div>
+          </div>
+          <div class="cap">
+            <div class="cap-content">
+              <div class="cap-title">Support</div>
+              <div class="cap-desc">Ongoing maintenance, model updates, and workflow expansion for production AI deployments inside regulated enterprises.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section reveal">
+        <div class="section-label">
+          <span>Get in touch</span>
+        </div>
+
+        <div class="contact-grid">
+          <h2 class="what-heading">
+            Talk to us.
+          </h2>
+
+          <div class="founders-list">
+            <div class="founder-card">
+              <div class="founder-name">Jessie Zeng</div>
+              <div class="founder-role">Co-Founder &amp; CEO</div>
+              <a class="contact-link" href="mailto:jessie@hellolumient.com">jessie@hellolumient.com</a>
+            </div>
+            <div class="founder-card">
+              <div class="founder-name">Vincent Hu</div>
+              <div class="founder-role">Co-Founder &amp; CTO</div>
+              <a class="contact-link" href="mailto:vincent@hellolumient.com">vincent@hellolumient.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="left">
+        <span>© 2026 Lumient Inc.</span>
+        <span>All rights reserved</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Reveal sections as they scroll into view (Palantir-style)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
