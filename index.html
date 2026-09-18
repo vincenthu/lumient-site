@@ -87,8 +87,7 @@
       border-bottom: 1px solid var(--rule);
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--fg-muted);
     }
 
@@ -130,8 +129,7 @@
     .hero-eyebrow {
       font-family: var(--font-mono);
       font-size: 0.78rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--accent);
       display: inline-flex;
       align-items: center;
@@ -215,15 +213,10 @@
       animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
     }
 
-    .hero .hero-rule {
-      animation: hero-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.0s both;
-    }
-
     @media (prefers-reduced-motion: reduce) {
       .wordmark-svg g path,
       .wordmark-svg .wm-dot,
-      .hero .tagline,
-      .hero .hero-rule {
+      .hero .tagline {
         animation: none;
       }
     }
@@ -293,13 +286,6 @@
     }
 
     /* RULE + DETAIL */
-    .hero-rule {
-      width: clamp(3rem, 5vw, 5rem);
-      height: 1px;
-      background: var(--accent);
-      margin-top: 1rem;
-    }
-
     /* MAIN CONTENT */
     main {
       padding: 0 clamp(1.5rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem);
@@ -315,8 +301,7 @@
     .section-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--fg-muted);
       margin-bottom: 1.6rem;
       display: flex;
@@ -425,8 +410,7 @@
     .form-label {
       font-family: var(--font-mono);
       font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--fg-muted);
     }
 
@@ -491,8 +475,7 @@
       padding: 0.95rem 2.2rem;
       font-family: var(--font-mono);
       font-size: 0.78rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       cursor: pointer;
       border-radius: 0;
       transition: transform 0.18s, box-shadow 0.18s;
@@ -510,8 +493,7 @@
     .form-direct {
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--fg-muted);
     }
 
@@ -538,8 +520,7 @@
       background: var(--accent-dim);
       font-family: var(--font-mono);
       font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--fg);
       margin-bottom: 0.8rem;
     }
@@ -558,8 +539,7 @@
       border-top: 1px solid var(--rule);
       font-family: var(--font-mono);
       font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--fg-muted);
     }
 
@@ -611,7 +591,6 @@
         Secure enterprise AI infrastructure for <strong>global investment banks.</strong>
       </p>
 
-      <div class="hero-rule"></div>
     </section>
 
     <main>
