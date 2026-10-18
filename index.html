@@ -408,6 +408,20 @@
 </script>
 
 <script>
+  (function () {
+    var vids = document.querySelectorAll('.ch-media video');
+    function go(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    vids.forEach(function (v) {
+      v.addEventListener('ended', function () { v.currentTime = 0; go(v); });
+      v.addEventListener('pause', function () { if (!v.ended && v.dataset.vis === '1') setTimeout(function () { if (v.paused) go(v); }, 300); });
+    });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target; v.dataset.vis = e.isIntersecting ? '1' : '0'; if (e.isIntersecting) go(v); }); }, { threshold: 0.25 });
+    vids.forEach(function (v) { io.observe(v); });
+  })();
+</script>
+
+<script>
   (function () { try { if (/[?&]sent=1/.test(location.search)) { var m = document.getElementById('df-sent'); if (m) m.hidden = false; } } catch (e) {} })();
 </script>
 
