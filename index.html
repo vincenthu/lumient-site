@@ -159,8 +159,9 @@
   .who3 { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
   .who3 article { display: grid; gap: 10px; align-content: start; min-width: 0; background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
   .who3 img { width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; filter: saturate(0.85); }
-  .custom { margin: 28px 0 0; max-width: 48rem; color: var(--ink-2); font-size: 1.1rem; }
-  .custom b { color: var(--ink); }
+  .custom { margin: clamp(40px, 6vw, 64px) 0 0; padding-top: clamp(32px, 5vw, 48px); border-top: 1px solid var(--line); max-width: 48rem; display: grid; gap: 12px; }
+  .custom h3 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.12; letter-spacing: -0.02em; }
+  .custom p { margin: 0; color: var(--ink-2); font-size: 1.15rem; }
   .who3 h3 { margin: 0; font-size: 1.2rem; }
   .who3 p { margin: 0; color: var(--ink-2); }
   @media (max-width: 860px) { .who3 { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
@@ -174,7 +175,7 @@
   .ch-text h3 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.12; letter-spacing: -0.02em; }
   .ch-text p { margin: 0; color: var(--ink-2); font-size: 1.15rem; max-width: 28rem; }
   .chapter.pre { opacity: 0; transform: translateY(28px); }
-  @media (max-width: 760px) { .chapter, .chapter.flip { grid-template-columns: minmax(0, 1fr); gap: 18px; } .chapter.flip .ch-media { order: 0; } }
+  @media (max-width: 760px) { .chapter, .chapter.flip { grid-template-columns: minmax(0, 1fr); gap: 18px; } .chapter.flip .ch-media { order: 0; } .chapter:last-child { padding-bottom: 0; } #features > .in { padding-bottom: 40px; } }
   @media (prefers-reduced-motion: reduce) { .chapter { transition: none; } }
   /* Scroll-through features */
   .fscroll { height: calc(var(--n) * 75svh + 100svh); position: relative; }
@@ -227,11 +228,11 @@
   #film .hero-film { margin-top: 0; }
   .vband { position: relative; overflow: hidden; background: var(--navy); color: var(--on-navy); }
   .vband .in { position: relative; z-index: 2; padding-block: clamp(80px, 12vw, 140px); }
+  @media (max-width: 760px) { .vband .in { padding-block: 48px; } }
   .vband .chip { display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; border-radius: 10px; height: 56px; padding: 0 20px; }
   .vband .chip img { height: 26px; opacity: 1; }
   .vband .chip img[src*="salesforce"] { height: 40px; }
   .vband .logos { gap: 12px; }
-  .vband .chip.more { background: transparent; border: 1px dashed rgba(255,255,255,0.45); color: var(--on-navy); font-weight: 700; font-size: 0.95rem; }
   .vband .works { margin-top: clamp(40px, 6vw, 64px); }
   .vband .works .lbl, .creds .lbl { display: block; font-size: 0.875rem; color: var(--on-navy); opacity: 0.7; margin-bottom: 18px; }
   .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 28px 44px; }
@@ -353,7 +354,7 @@
       <article><h3>Warehouse and lender finance</h3><p>Check the lender, not just the loans. Financials, certificates and amendments for every company you fund.</p></article>
       <article><h3>Private credit and direct lenders</h3><p>See who is close to a covenant before the quarter closes. Leverage and coverage, tested under current terms.</p></article>
     </div>
-    <p class="custom"><b>Complex workflow? That&rsquo;s our specialty.</b> We design Lumient around how your team already works: your reporting packages, your covenant definitions and your approval steps.</p>
+    <div class="custom"><h3>Custom AI built around your desk</h3><p>Every credit team works a little differently. We build custom, secure AI around your documents and your process, integrate it with the systems you already use and deploy it in your cloud or on a machine in your office.</p></div>
   </div>
 </section>
 
@@ -368,29 +369,29 @@
     <h2>What Lumient does</h2>
     <div class="chapter">
       <div class="ch-media"><video src="feat-covenants.mp4" poster="feat-covenants.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Covenant and reporting tracking</h3><p>Every test and deadline, checked against the terms as amended.</p></div>
+      <div class="ch-text"><h3>Know who is close to a covenant breach</h3><p>Every test and deadline, checked against the terms as amended.</p></div>
     </div>
     <div class="chapter flip">
       <div class="ch-media"><video src="feat-answers.mp4" poster="feat-answers.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Answers from your loan documents</h3><p>Ask about any agreement and get the answer with the clause it came from.</p></div>
+      <div class="ch-text"><h3>Get answers from any loan agreement</h3><p>Ask about any agreement and get the answer with the clause it came from.</p></div>
     </div>
     <div class="chapter">
       <div class="ch-media"><video src="feat-warnings.mp4" poster="feat-warnings.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Early warnings</h3><p>Falling runway, missing reports and open post-closing items, flagged before they become breaches.</p></div>
+      <div class="ch-text"><h3>Spot trouble before it becomes a breach</h3><p>Falling runway, missing reports and open post-closing items, flagged before they become breaches.</p></div>
     </div>
     <div class="chapter flip">
       <div class="ch-media"><video src="feat-review.mp4" poster="feat-review.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Monthly portfolio review</h3><p>A dashboard and credit committee report built from the packages your borrowers send.</p></div>
+      <div class="ch-text"><h3>Walk into committee with the review done</h3><p>A dashboard and credit committee report built from the packages your borrowers send.</p></div>
     </div>
     <div class="chapter">
       <div class="ch-media"><video src="feat-audit.mp4" poster="feat-audit.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Analyst review and audit trail</h3><p>Exceptions wait for sign-off, and every decision is recorded.</p></div>
+      <div class="ch-text"><h3>Sign off on exceptions with the full history</h3><p>Exceptions wait for sign-off, and every decision is recorded.</p></div>
     </div>
   </div>
 </section>
 
 <section class="vband" id="trust">
-  <div class="in"><p class="trustline">Your data stays in your cloud. Every number links to the page and clause it came from, and every approval records who signed off.</p><p class="connects">Connects to Salesforce, nCino, Moody&rsquo;s CreditLens, Loan IQ, ACBS, SharePoint, Outlook, Excel and the other systems your team already uses. Read-only, set up in one click.</p><div class="works"><span class="lbl">Works with</span><div class="logos"><span class="chip"><img src="logos/salesforce.svg" alt="Salesforce" loading="lazy"></span><span class="chip"><img src="logos/ncino.svg" alt="nCino" loading="lazy"></span><span class="chip"><img src="logos/moodys.svg" alt="Moody's CreditLens" loading="lazy"></span><span class="chip"><img src="logos/finastra.png" alt="Finastra Loan IQ" loading="lazy"></span><span class="chip"><img src="logos/fis.svg" alt="FIS ACBS" loading="lazy"></span><span class="chip"><img src="logos/sharepoint.svg" alt="Microsoft SharePoint" loading="lazy"></span><span class="chip"><img src="logos/outlook.svg" alt="Microsoft Outlook" loading="lazy"></span><span class="chip"><img src="logos/excel.svg" alt="Microsoft Excel" loading="lazy"></span><span class="chip more">And more</span></div></div></div>
+  <div class="in"><p class="trustline">Your data stays in your cloud. Every number links to the page and clause it came from, and every approval records who signed off.</p><p class="connects">Connects to Salesforce, nCino, Moody&rsquo;s CreditLens, Loan IQ, ACBS, SharePoint, Outlook, Excel and the other systems your team already uses. Read-only, set up in one click.</p><div class="works"><span class="lbl">Works with</span><div class="logos"><span class="chip"><img src="logos/salesforce.svg" alt="Salesforce" loading="lazy"></span><span class="chip"><img src="logos/ncino.svg" alt="nCino" loading="lazy"></span><span class="chip"><img src="logos/moodys.svg" alt="Moody's CreditLens" loading="lazy"></span><span class="chip"><img src="logos/finastra.png" alt="Finastra Loan IQ" loading="lazy"></span><span class="chip"><img src="logos/fis.svg" alt="FIS ACBS" loading="lazy"></span><span class="chip"><img src="logos/sharepoint.svg" alt="Microsoft SharePoint" loading="lazy"></span><span class="chip"><img src="logos/outlook.svg" alt="Microsoft Outlook" loading="lazy"></span><span class="chip"><img src="logos/excel.svg" alt="Microsoft Excel" loading="lazy"></span></div></div></div>
 </section>
 
 <section class="sec" id="team">
