@@ -45,7 +45,7 @@ h2 { font-size: var(--major-size); }
 a { color: inherit; text-underline-offset: .2em; }
 button, summary { cursor: pointer; }
 button, input, select, textarea { font: inherit; color: inherit; }
-.btn, button, .nav nav, .film-link, .sheet-caption, .sheet-line, .sheet-total, .chart-axis,
+.btn, button, .nav nav, .sheet-caption, .sheet-line, .sheet-total, .chart-axis,
 .audience, .flow-step small, .group-label, .creds .lbl, .ff label, .foot, th { letter-spacing: .01em; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
@@ -90,24 +90,9 @@ details[open] summary .icon { transform: rotate(180deg); }
 .hero-copy p { max-width: 42ch; margin: 22px auto 24px; font-size: clamp(1.3125rem, 1.55vw, 1.375rem); line-height: 1.5; text-wrap: pretty; }
 .hero-copy p span { color: var(--muted); }
 .hero-film {
-  position: relative; isolation: isolate; display: flex; align-items: flex-end; justify-content: space-between;
-  max-width: 1120px; aspect-ratio: 16 / 9; padding: clamp(18px, 2.4vw, 36px); background: var(--navy); color: white; overflow: hidden;
+  display: block; max-width: 1120px; aspect-ratio: 16 / 9; background: var(--navy);
+  border: 1px solid #aeb6bd; border-radius: 4px; overflow: hidden;
 }
-.hero-bg, .hero-film::after { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
-.hero-bg { object-fit: contain; filter: grayscale(1); opacity: .85; }
-.hero-film::after { content: ''; z-index: -1; background: linear-gradient(0deg, rgba(14,23,40,.86), transparent 62%); }
-.film-link { display: inline-flex; align-items: center; gap: 12px; font-size: .92rem; font-weight: 500; text-decoration: none; }
-.film-link:hover { text-decoration: underline; }
-.film-link .icon, .motion-control, .film-close { width: 40px; height: 40px; border: 1px solid #ffffff91; border-radius: 50%; }
-.film-link .icon { padding: 10px; }
-.motion-control, .film-close { display: grid; place-items: center; color: white; background: #111c31a6; }
-.motion-control .icon { width: 14px; height: 14px; }
-.motion-control[aria-pressed="true"] .icon { display: none; }
-.motion-control[aria-pressed="true"]::after { content: ''; border-block: 5px solid transparent; border-left: 8px solid currentColor; }
-#film-dialog { position: fixed; width: min(1000px, 94vw); padding: 0; max-height: 94svh; border: 1px solid #555d6d; background: var(--navy); }
-#film-dialog::backdrop { background: #0c111be6; }
-#film-dialog video { display: block; width: 100%; max-height: 84svh; }
-.film-close { position: absolute; top: 10px; right: 10px; z-index: 1; }
 
 /* Each section shares a left edge and a fine rule with the next. */
 .solutions, .how > .in, .workflows, .comparison > .in, .integrations, .security > .in, .founders { padding-block: var(--space); }
@@ -287,9 +272,6 @@ details[open] summary .icon { transform: rotate(180deg); }
   .hero h1 { max-width: 15ch; margin-inline: auto; font-size: clamp(3rem, 13.5vw, 4.75rem); }
   .hero h1 span { display: inline; }
   .hero-copy p { margin-block: 18px 22px; }
-  .film-link { font-size: .9375rem; }
-  .film-link .icon, .hero-motion { width: 34px; height: 34px; }
-  .film-link .icon { padding: 8px; }
   .solutions, .security .in, .people { grid-template-columns: 1fr; }
   .sheet { padding-inline: 12px; }
   .sheet-caption { font-size: 1rem; }

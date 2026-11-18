@@ -8,7 +8,7 @@
   <link rel="icon" href="favicon.png">
   <link rel="preload" href="fonts/LibreCaslonDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="bg-montage.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="lumient-film-poster.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="homepage.css">
   <script src="homepage.js" defer></script>
 </head>
@@ -37,16 +37,9 @@
     <p>Lumient reads your agreements, amendments, and loan tape, <span>tracks every rule and number, and flags what needs attention, with the source behind each one.</span></p>
     <a class="btn btn-cta" href="#contact">Request a demo</a>
   </div>
-  <div class="in hero-film">
-    <video class="hero-bg" data-src="bg-montage.mp4" poster="bg-montage.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
-    <a href="lumient-film.mp4" class="film-link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 10 7-10 7z" fill="currentColor" stroke="none"/></svg> Watch product film</a>
-    <button class="motion-control hero-motion" aria-label="Pause animations" type="button" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14 M16 5v14" stroke-width="3"/></svg></button>
-  </div>
+  <video class="in hero-film" data-src="lumient-film.mp4" poster="lumient-film-poster.jpg"
+    controls muted loop playsinline preload="metadata" aria-label="Lumient product film"></video>
 </header>
-<dialog id="film-dialog" aria-label="Lumient product film">
-  <button type="button" class="film-close" aria-label="Close film"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12 M18 6 6 18"/></svg></button>
-  <video loading="lazy" data-src="lumient-film.mp4" poster="lumient-film-poster.jpg" controls playsinline preload="none" aria-label="Lumient product film"></video>
-</dialog>
 <main>
   <section class="solutions in" id="solutions" aria-label="Solutions">
     <article class="job-card">

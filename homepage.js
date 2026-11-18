@@ -44,29 +44,10 @@ nav.addEventListener("focusout", event => {
 });
 matchMedia("(max-width: 680px)").addEventListener("change", closeNav);
 
-const dialog = document.querySelector("#film-dialog");
-const film = dialog.querySelector("video");
-document.querySelector(".film-link").addEventListener("click", event => {
-  if (!dialog.showModal || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
-  event.preventDefault();
-  dialog.showModal();
-  if (!film.hasAttribute("src")) film.src = film.dataset.src;
-  film.play().catch(() => {});
-  scheduleMediaUpdate();
-});
-dialog.querySelector(".film-close").addEventListener("click", () => dialog.close());
-dialog.addEventListener("click", event => {
-  if (event.target === dialog) dialog.close();
-});
-dialog.addEventListener("close", () => {
-  film.pause();
-  scheduleMediaUpdate();
-});
-
 const desktop = matchMedia("(min-width: 801px)");
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-const hero = document.querySelector(".hero-bg");
-const motionButtons = document.querySelectorAll(".motion-switch, .hero-motion");
+const film = document.querySelector(".hero-film");
+const motionButton = document.querySelector(".motion-switch");
 const groups = Array.from(document.querySelectorAll(".workflow-group"), section => ({
   section,
   stage: section.querySelector(".media-stage"),
@@ -98,7 +79,7 @@ function arrangeClips() {
 }
 
 function playback(video, visible) {
-  const playing = visible && !reduced.matches && !userPaused && !document.hidden && !dialog.open;
+  const playing = visible && !reduced.matches && !userPaused && !document.hidden;
   if (video.dataset.playing === String(playing)) return;
   video.dataset.playing = String(playing);
   if (!playing) {
@@ -111,9 +92,28 @@ function playback(video, visible) {
 function inViewport(bounds) {
   return bounds.bottom > 0 && bounds.top < window.innerHeight;
 }
+let filmInView = false;
+let filmPausedByUser = false;
+film.addEventListener("pause", () => {
+  if (filmInView && !reduced.matches && film.paused) filmPausedByUser = true;
+});
+film.addEventListener("play", () => { filmPausedByUser = false; });
+
+function updateFilm() {
+  const visible = !document.hidden && inViewport(film.getBoundingClientRect());
+  if (visible === filmInView) return;
+  filmInView = visible;
+  if (!visible) {
+    film.pause();
+    return;
+  }
+  if (!film.hasAttribute("src")) film.src = film.dataset.src;
+  if (!reduced.matches && !filmPausedByUser) film.play().catch(() => {});
+}
+
 function updateMedia() {
   frame = 0;
-  playback(hero, inViewport(hero.getBoundingClientRect()));
+  updateFilm();
   for (const group of groups) {
     const area = group.section.getBoundingClientRect();
     const visible = inViewport(area);
@@ -163,27 +163,22 @@ function syncMotion() {
       video.load();
     }
   }
-  for (const button of motionButtons) {
-    button.hidden = reduced.matches;
-    const label = userPaused ? "Play animations" : "Pause animations";
-    if (button.classList.contains("motion-switch")) button.textContent = label;
-    else {
-      button.setAttribute("aria-label", label);
-      button.setAttribute("aria-pressed", String(userPaused));
-    }
-  }
+  motionButton.hidden = reduced.matches;
+  motionButton.textContent = userPaused ? "Play animations" : "Pause animations";
   updateMedia();
 }
-for (const button of motionButtons) {
-  button.addEventListener("click", () => {
-    userPaused = !userPaused;
-    syncMotion();
-  });
-}
+motionButton.addEventListener("click", () => {
+  userPaused = !userPaused;
+  syncMotion();
+});
 window.addEventListener("scroll", scheduleMediaUpdate, {passive: true});
 window.addEventListener("resize", scheduleMediaUpdate);
 desktop.addEventListener("change", arrangeClips);
-reduced.addEventListener("change", syncMotion);
+reduced.addEventListener("change", () => {
+  filmInView = false;
+  if (reduced.matches && film.hasAttribute("src")) film.load();
+  syncMotion();
+});
 document.addEventListener("visibilitychange", updateMedia);
 document.fonts.ready.then(scheduleMediaUpdate);
 arrangeClips();
