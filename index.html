@@ -6,14 +6,15 @@
   <title>AI for lender reporting and credit monitoring</title>
   <meta name="description" content="Lumient reads your agreements, amendments, and loan tape, tracks every rule and number, and flags what needs attention, with the source behind each one.">
   <link rel="icon" href="favicon.png">
-  <link rel="preload" href="fonts/Onest-Black.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="fonts/Newsreader-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Onest-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="bg-montage.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="homepage.css">
   <script src="homepage.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#solutions">Skip to solutions</a>
 <header class="hero" id="home">
-  <video class="hero-bg" data-src="bg-montage.mp4" poster="bg-montage.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="nav-wrap">
     <div class="in nav">
       <a class="logo" href="#home" aria-label="Lumient home"><img src="logo-white.png" alt="Lumient" width="140" height="40"></a>
@@ -32,15 +33,19 @@
     </div>
   </div>
   <div class="in hero-copy">
-    <h1>AI for lender reporting and credit monitoring</h1>
-    <p>Lumient reads your agreements, amendments, and loan tape, tracks every rule and number, and flags what needs attention, with the source behind each one.</p>
-    <div class="hero-actions"><a class="btn btn-cta" href="#contact">Request a demo</a><a href="lumient-film.mp4" class="film-link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 10 7-10 7z" fill="currentColor" stroke="none"/></svg> Watch product film</a></div>
+    <h1>AI for lender reporting <span>and credit monitoring</span></h1>
+    <p>Lumient reads your agreements, amendments, and loan tape, <span>tracks every rule and number, and flags what needs attention, with the source behind each one.</span></p>
+    <a class="btn btn-cta" href="#contact">Request a demo</a>
   </div>
-  <button class="motion-control hero-motion" aria-label="Pause animations" type="button" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14 M16 5v14" stroke-width="3"/></svg></button>
+  <div class="in hero-film">
+    <video class="hero-bg" data-src="bg-montage.mp4" poster="bg-montage.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+    <a href="lumient-film.mp4" class="film-link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 10 7-10 7z" fill="currentColor" stroke="none"/></svg> Watch product film</a>
+    <button class="motion-control hero-motion" aria-label="Pause animations" type="button" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14 M16 5v14" stroke-width="3"/></svg></button>
+  </div>
 </header>
 <dialog id="film-dialog" aria-label="Lumient product film">
   <button type="button" class="film-close" aria-label="Close film"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12 M18 6 6 18"/></svg></button>
-  <video data-src="lumient-film.mp4" poster="lumient-film-poster.jpg" controls playsinline preload="none" aria-label="Lumient product film"></video>
+  <video loading="lazy" data-src="lumient-film.mp4" poster="lumient-film-poster.jpg" controls playsinline preload="none" aria-label="Lumient product film"></video>
 </dialog>
 <main>
   <section class="solutions in" id="solutions" aria-label="Solutions">
@@ -55,7 +60,7 @@
     <article class="job-card">
       <div class="job-art monitor-art" aria-hidden="true">
         <div class="chart-sheet"><div class="sheet-caption">Borrower cash runway</div>
-        <div class="spark"><svg viewBox="0 0 286 64" preserveAspectRatio="none"><path d="M0 10H286 M0 32H286 M0 54H286" fill="none" stroke="#e1e5f1"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46V64H0Z" fill="#e9edfd"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46" fill="none" stroke="#516fc3" stroke-width="2.5"/><circle cx="282" cy="46" r="3.5" fill="#23376d"/></svg></div>
+        <div class="spark"><svg viewBox="0 0 286 64" preserveAspectRatio="none"><path d="M0 10H286 M0 32H286 M0 54H286" fill="none" stroke="#d7dce0"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46V64H0Z" fill="#e1e6eb"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46" fill="none" stroke="#39495c" stroke-width="2.5"/><circle cx="282" cy="46" r="3.5" fill="#182537"/></svg></div>
         <div class="chart-axis"><span>May</span><span>Oct</span></div></div>
       </div>
       <div class="job-copy"><h2><a href="#monitor">Monitor your borrowers</a></h2>
@@ -78,27 +83,27 @@
           <article class="workflow-step" id="step-files">
             <h4><a href="#step-files">Files arrive and are sorted</a></h4>
             <p>To the right lender and facility, from Alteryx, Outlook and SharePoint.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-files.mp4" poster="feat-files.jpg" muted loop playsinline preload="none" aria-label="Files arrive and are sorted"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-files.mp4" poster="feat-files.jpg" muted loop playsinline preload="none" aria-label="Files arrive and are sorted"></video></div>
           </article>
           <article class="workflow-step" id="step-borrowing-base">
             <h4><a href="#step-borrowing-base">Click any number</a></h4>
             <p>Every term traced to its exact clause, and every calculation explained, step by step.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-borrowing-base.mp4" poster="feat-borrowing-base.jpg" muted loop playsinline preload="none" aria-label="Click any number"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-borrowing-base.mp4" poster="feat-borrowing-base.jpg" muted loop playsinline preload="none" aria-label="Click any number"></video></div>
           </article>
           <article class="workflow-step" id="step-ineligible">
             <h4><a href="#step-ineligible">See every loan and why it's ineligible</a></h4>
             <p>Every ineligible loan explained, with the exact rule each one fails.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-ineligible.mp4" poster="feat-ineligible.jpg" muted loop playsinline preload="none" aria-label="See every loan and why it's ineligible"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-ineligible.mp4" poster="feat-ineligible.jpg" muted loop playsinline preload="none" aria-label="See every loan and why it's ineligible"></video></div>
           </article>
           <article class="workflow-step" id="step-template">
             <h4><a href="#step-template">Trace every number/calculation</a></h4>
             <p>See how the math was done, down to the formula in your Excel template.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-template.mp4" poster="feat-template.jpg" muted loop playsinline preload="none" aria-label="Trace every number/calculation"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-template.mp4" poster="feat-template.jpg" muted loop playsinline preload="none" aria-label="Trace every number/calculation"></video></div>
           </article>
           <article class="workflow-step" id="step-sign-off">
             <h4><a href="#step-sign-off">Certificates and reports ready for sign-off</a></h4>
             <p>Reports that build themselves, drafted in each lender's own format. Your team reviews and approves each one.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-sign-off.mp4" poster="feat-sign-off.jpg" muted loop playsinline preload="none" aria-label="Certificates and reports ready for sign-off"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-sign-off.mp4" poster="feat-sign-off.jpg" muted loop playsinline preload="none" aria-label="Certificates and reports ready for sign-off"></video></div>
           </article>
           </div>
           <div class="media-column"><div class="media-stage"></div></div>
@@ -111,27 +116,27 @@
           <article class="workflow-step" id="step-covenants">
             <h4><a href="#step-covenants">Know who is close to a covenant breach</a></h4>
             <p>Every test and deadline, checked against the terms as amended.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-covenants.mp4" poster="feat-covenants.jpg" muted loop playsinline preload="none" aria-label="Know who is close to a covenant breach"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-covenants.mp4" poster="feat-covenants.jpg" muted loop playsinline preload="none" aria-label="Know who is close to a covenant breach"></video></div>
           </article>
           <article class="workflow-step" id="step-answers">
             <h4><a href="#step-answers">Get answers from any loan agreement</a></h4>
             <p>Ask about any agreement and get the answer with the clause it came from.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-answers.mp4" poster="feat-answers.jpg" muted loop playsinline preload="none" aria-label="Get answers from any loan agreement"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-answers.mp4" poster="feat-answers.jpg" muted loop playsinline preload="none" aria-label="Get answers from any loan agreement"></video></div>
           </article>
           <article class="workflow-step" id="step-warnings">
             <h4><a href="#step-warnings">Spot trouble before it becomes a breach</a></h4>
             <p>Falling runway, missing reports and open post-closing items, flagged before they become breaches.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-warnings.mp4" poster="feat-warnings.jpg" muted loop playsinline preload="none" aria-label="Spot trouble before it becomes a breach"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-warnings.mp4" poster="feat-warnings.jpg" muted loop playsinline preload="none" aria-label="Spot trouble before it becomes a breach"></video></div>
           </article>
           <article class="workflow-step" id="step-review">
             <h4><a href="#step-review">Walk into committee with the review done</a></h4>
             <p>A dashboard and credit committee report built from the packages your borrowers send.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-review.mp4" poster="feat-review.jpg" muted loop playsinline preload="none" aria-label="Walk into committee with the review done"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-review.mp4" poster="feat-review.jpg" muted loop playsinline preload="none" aria-label="Walk into committee with the review done"></video></div>
           </article>
           <article class="workflow-step" id="step-audit">
             <h4><a href="#step-audit">Sign off on exceptions with the full history</a></h4>
             <p>Exceptions wait for sign-off, and every decision is recorded.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-audit.mp4" poster="feat-audit.jpg" muted loop playsinline preload="none" aria-label="Sign off on exceptions with the full history"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-audit.mp4" poster="feat-audit.jpg" muted loop playsinline preload="none" aria-label="Sign off on exceptions with the full history"></video></div>
           </article>
           </div>
           <div class="media-column"><div class="media-stage"></div></div>
@@ -144,22 +149,22 @@
           <article class="workflow-step" id="step-amended-clause">
             <h4><a href="#step-amended-clause">Click to see the exact clause</a></h4>
             <p>Showing the latest amendment version in force.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-amended-clause.mp4" poster="feat-amended-clause.jpg" muted loop playsinline preload="none" aria-label="Click to see the exact clause"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-amended-clause.mp4" poster="feat-amended-clause.jpg" muted loop playsinline preload="none" aria-label="Click to see the exact clause"></video></div>
           </article>
           <article class="workflow-step" id="step-agreements">
             <h4><a href="#step-agreements">Ask across every agreement</a></h4>
             <p>Ask "Which funders must we notify on a change in key management?" and get one answer, traced to the source.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-agreements.mp4" poster="feat-agreements.jpg" muted loop playsinline preload="none" aria-label="Ask across every agreement"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-agreements.mp4" poster="feat-agreements.jpg" muted loop playsinline preload="none" aria-label="Ask across every agreement"></video></div>
           </article>
           <article class="workflow-step" id="step-deadlines">
             <h4><a href="#step-deadlines">Alerts before deadlines</a></h4>
             <p>A Teams or Outlook alert 25 days before a report or covenant test is due.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-deadlines.mp4" poster="feat-deadlines.jpg" muted loop playsinline preload="none" aria-label="Alerts before deadlines"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-deadlines.mp4" poster="feat-deadlines.jpg" muted loop playsinline preload="none" aria-label="Alerts before deadlines"></video></div>
           </article>
           <article class="workflow-step" id="step-copilot">
             <h4><a href="#step-copilot">Works with the AI you already use</a></h4>
             <p>Feeds approved numbers to Abacus and Power BI.</p>
-            <div class="clip-slot"><video class="workflow-clip" data-src="feat-copilot.mp4" poster="feat-copilot.jpg" muted loop playsinline preload="none" aria-label="Works with the AI you already use"></video></div>
+            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-copilot.mp4" poster="feat-copilot.jpg" muted loop playsinline preload="none" aria-label="Works with the AI you already use"></video></div>
           </article>
           </div>
           <div class="media-column"><div class="media-stage"></div></div>
@@ -167,7 +172,7 @@
       </section>
   </section>
   <section class="comparison"><div class="in">
-    <h2>You shouldn't have to pay for a full platform when you only use a fraction of it.</h2>
+    <h2>You shouldn't have to pay for a full platform <span>when you only use a fraction of it.</span></h2>
     <div class="points">
       <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 4 2 2 M4 8l2 2 M5 11l6-6 3 3-6 6z M10 15l5-5 3 3-5 5z M16 16l4 4"/></svg><h3>Up and running fast</h3><p>No migration, no new data entry. We handle the setup and every integration ourselves, so your systems, dashboards and routines stay as they are.</p></article>
       <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5 6 5 6 M16 6l5 6-5 6 M14 4l-4 16"/></svg><h3>The math runs in code</h3><p>General AI tools aren't built to produce lender reports you can certify. Lumient runs the rules against every loan in code, so the same inputs always give the same answer, and always uses the most advanced AI model for each task.</p></article>
@@ -183,11 +188,11 @@
   </div></section>
 </main>
 <section class="sec" id="team">
-  <div class="in founders" style="padding-top:clamp(48px,7vw,88px)">
+  <div class="in founders">
     <h2>Founders</h2>
     <div class="people">
-      <p><img class="face" src="jessie.jpg" alt="Jessie Zeng" width="96" height="96"><b>Jessie Zeng</b>Co-founder and CEO. Wellesley and MIT. Algorithmic FX trader at Citi. Previously founded Choosy.<br><a href="mailto:jessie@hellolumient.com">jessie@hellolumient.com</a></p>
-      <p><img class="face" src="vincent.jpg" alt="Vincent Hu" width="96" height="96"><b>Vincent Hu, CFA</b>Co-founder and CTO. Yale. Founding engineer on Bloomberg&rsquo;s private equity product. Built recommendations AI at Amazon.<br><a href="mailto:vincent@hellolumient.com">vincent@hellolumient.com</a></p>
+      <p><img class="face" loading="lazy" src="jessie.jpg" alt="Jessie Zeng" width="96" height="96"><b>Jessie Zeng</b>Co-founder and CEO. Wellesley and MIT. Algorithmic FX trader at Citi. Previously founded Choosy.<br><a href="mailto:jessie@hellolumient.com">jessie@hellolumient.com</a></p>
+      <p><img class="face" loading="lazy" src="vincent.jpg" alt="Vincent Hu" width="96" height="96"><b>Vincent Hu, CFA</b>Co-founder and CTO. Yale. Founding engineer on Bloomberg&rsquo;s private equity product. Built recommendations AI at Amazon.<br><a href="mailto:vincent@hellolumient.com">vincent@hellolumient.com</a></p>
     </div>
     <div class="creds"><span class="lbl">The team comes from</span><div class="logos"><img class="lc" src="logos/citi.svg" alt="Citi" loading="lazy"><img class="ld" src="logos/citi-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/bloomberg.svg" alt="Bloomberg" loading="lazy"><img class="ld" src="logos/bloomberg-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/amazon.svg" alt="Amazon" loading="lazy"><img class="ld" src="logos/amazon-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/applovin.svg" alt="AppLovin" loading="lazy"><img class="ld" src="logos/applovin-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/mit.svg" alt="MIT" loading="lazy"><img class="ld" src="logos/mit-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/hbs.svg" alt="Harvard Business School" loading="lazy"><img class="ld" src="logos/hbs-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/yale.svg" alt="Yale" loading="lazy"><img class="ld" src="logos/yale-white.svg" alt="" aria-hidden="true" loading="lazy"><img class="lc" src="logos/wellesley.png" alt="Wellesley College" loading="lazy"><img class="ld" src="logos/wellesley-white.png" alt="" aria-hidden="true" loading="lazy"></div></div>
   </div>
@@ -195,8 +200,10 @@
 
 <footer class="closer" id="contact">
   <div class="in">
-    <h2>Talk to us about your portfolio.</h2>
-    <p>We work with a small number of lenders at a time.</p>
+    <div class="contact-intro">
+      <h2>Talk to us about your portfolio.</h2>
+      <p>We work with a small number of lenders at a time.</p>
+    </div>
     <form class="demo-form" id="demo-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="3d128e38-8191-4d50-bae7-05f7e5691275">
       <input type="hidden" name="subject" value="Demo request from hellolumient.com">
