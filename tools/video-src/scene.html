@@ -24,6 +24,7 @@
 <script src="shared.js"></script>
 <script>
   const params = new URLSearchParams(location.search);
+  document.documentElement.classList.toggle('film-frame', params.has('film'));
   const name = params.get('scene') || 'files';
   const scene = window.scenes[name];
   if (!scene) throw new Error('Unknown workflow ' + name);

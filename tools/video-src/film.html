@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Lumient product film</title>
+<style>
+  @font-face {
+    font-family: 'Libre Caslon Display';
+    src: url('../../fonts/LibreCaslonDisplay-Regular.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Schibsted Grotesk';
+    src: url('../../fonts/SchibstedGrotesk-Variable.woff2') format('woff2');
+    font-weight: 400 700;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #101b36; }
+  main { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+  section { position: absolute; inset: 0; }
+  .card {
+    display: grid; align-content: center; justify-items: center; text-align: center;
+    background: #101b36; color: white; font-family: 'Libre Caslon Display', serif;
+  }
+  .card p { margin: 0; }
+  #title p { font-size: 86px; line-height: 1.06; letter-spacing: -.015em; }
+  #end img { width: 366px; height: auto; }
+  #end p { margin-top: 39px; font-size: 56px; line-height: 1.1; }
+  #end small { margin-top: 28px; font: 400 25px 'Schibsted Grotesk'; color: #c2cad5; }
+  .product { background: white; }
+  iframe { width: 100%; height: calc(100% - 136px); border: 0; display: block; }
+  .caption {
+    position: absolute; inset: auto 0 0; height: 164px; margin: 0;
+    display: flex; align-items: end; padding: 0 7% 40px;
+    color: white; font: 600 42px/1.16 'Schibsted Grotesk', sans-serif;
+    background: linear-gradient(to bottom, transparent, rgba(16,27,54,.57) 46%, #101b36 100%);
+  }
+</style>
+<main>
+  <section class="card" id="title"><p>Reporting to your funders<br> shouldn't take a week of copy and paste.</p></section>
+  <section class="product" data-scene="files"><p class="caption">Files arrive and are sorted to the right lender and facility.</p></section>
+  <section class="product" data-scene="borrowing-base"><p class="caption">Click any number.</p></section>
+  <section class="product" data-scene="ineligible"><p class="caption">See every loan and why it's ineligible.</p></section>
+  <section class="product" data-scene="sign-off"><p class="caption">Certificates and reports ready for sign-off.</p></section>
+  <section class="product" data-scene="covenants"><p class="caption">Know who is close to a covenant breach.</p></section>
+  <section class="product" data-scene="amended-clause"><p class="caption">Click to see the exact clause.</p></section>
+  <section class="product" data-scene="copilot"><p class="caption">Works with the AI you already use.</p></section>
+  <section class="card" id="end">
+    <img src="../../logo-white.png" alt="Lumient">
+    <p>AI for lender reporting and credit monitoring</p>
+    <small>hellolumient.com</small>
+  </section>
+</main>
+<script>
+  const fps = 30;
+  const fade = 12;
+  const productHold = 126;
+  const shots = [...document.querySelectorAll('main > section')];
+  const starts = [0, 3 * fps];
+  for (let i = 2; i < shots.length; i++) starts.push(starts[i - 1] + fade + productHold);
+  window.frameCount = starts.at(-1) + fade + 4 * fps;
+  window.posterFrame = starts[2] + fade + 3 * fps;
+
+  window.drawFrame = frame => {
+    const current = starts.findLastIndex(start => frame >= start);
+    const age = frame - starts[current];
+    for (const [i, shot] of shots.entries()) {
+      const visible = i === current || (i === current - 1 && age < fade);
+      shot.style.visibility = visible ? 'visible' : 'hidden';
+      if (!visible) continue;
+      const mix = i === current && current > 0 ? Math.min(age / fade, 1) : 1;
+      shot.style.opacity = mix * mix * (3 - 2 * mix);
+      const scene = shot.querySelector('iframe');
+      if (scene) {
+        // Hold the resolved workflow through the dissolve, before its loop rewinds.
+        const time = Math.min(productHold, Math.max(0, frame - starts[i] - fade)) / fps;
+        scene.contentWindow.renderFrame(time);
+      }
+    }
+  };
+
+  async function prepare() {
+    await Promise.all([...document.querySelectorAll('[data-scene]')].map(shot => {
+      const scene = document.createElement('iframe');
+      const loaded = new Promise(resolve => { scene.onload = resolve; });
+      scene.src = 'scene.html?film&capture&scene=' + shot.dataset.scene;
+      shot.prepend(scene);
+      return loaded;
+    }));
+    await Promise.all([
+      document.fonts.load('86px "Libre Caslon Display"'),
+      document.fonts.load('600 42px "Schibsted Grotesk"'),
+      document.fonts.load('400 25px "Schibsted Grotesk"'),
+      document.querySelector('#end img').decode()
+    ]);
+    drawFrame(0);
+    if (!new URLSearchParams(location.search).has('capture')) {
+      const start = performance.now();
+      function play(now) {
+        drawFrame(Math.floor((now - start) * fps / 1000) % frameCount);
+        requestAnimationFrame(play);
+      }
+      requestAnimationFrame(play);
+    }
+  }
+  window.filmReady = prepare();
+</script>
+</html>

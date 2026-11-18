@@ -1,4 +1,4 @@
-/* Four deterministic five-second scenes. All coordinates refer to the 1280 by 800 canvas. */
+/* Deterministic five-second scenes. All coordinates refer to the 1280 by 800 canvas. */
 (() => {
   const styles = `
     <style>
@@ -61,9 +61,12 @@
   }
 
   // The same interaction timing makes each poster a readable, settled end state.
-  function interaction(start, target, rest) {
+  function interaction(start, selector, rest) {
     return (t, root) => {
       const { ease, cursor } = window.motion;
+      const element = root.querySelector(selector).getBoundingClientRect();
+      const bounds = root.getBoundingClientRect();
+      const target = [element.left - bounds.left + element.width / 2, element.top - bounds.top + element.height / 2];
       const move = ease(0.12, 1.1, t);
       const settle = ease(1.6, 2.35, t);
       const reveal = ease(1.12, 1.6, t) * (1 - ease(4.46, 4.95, t));
@@ -74,6 +77,16 @@
       cursor(root, x, y, press, ease(0, 0.25, t) * (1 - ease(3.86, 4.4, t)));
     };
   }
+
+  const covenants = screen('Covenant monitoring', 'Meadow Lane Lending · October 2025', `
+    <table class="comparison">
+      <thead><tr><th>Borrower</th><th>Debt service coverage</th><th>Minimum</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Birch Bay Works</td><td>1.22×</td><td>1.20×</td><td class="warning"><b>Near limit</b></td></tr>
+        <tr><td>Alder Mill Paper</td><td>1.56×</td><td>1.25×</td><td class="positive">Within limit</td></tr>
+        <tr><td>Maple Dune Supply</td><td>1.74×</td><td>1.30×</td><td class="positive">Within limit</td></tr>
+      </tbody>
+    </table>`);
 
   const amendedClause = screen('Agreement rules', 'Harbor Street Capital · Warehouse A', `
     <div class="rule-layout">
@@ -141,9 +154,23 @@
     </div>`);
 
   window.scenes = Object.assign(window.scenes || {}, {
-    'amended-clause': { html: amendedClause, render: interaction([413, 494], [243, 312], [856, 510]) },
-    agreements: { html: agreements, render: interaction([795, 395], [1139, 280], [1030, 487]) },
-    deadlines: { html: deadlines, render: interaction([388, 521], [194, 625], [814, 491]) },
-    copilot: { html: copilot, render: interaction([850, 382], [1139, 280], [751, 429]) },
+    covenants: {
+      html: covenants,
+      render(t, root) {
+        const { ease } = window.motion;
+        root.querySelectorAll('tbody tr').forEach((row, i) => {
+          const start = .3 + i * .50;
+          const progress = ease(start, start + .4, t) * (1 - ease(4.46, 4.95, t));
+          row.style.opacity = progress;
+          row.style.transform = `translateY(${(1 - progress) * 10}px)`;
+        });
+        root.querySelector('tbody tr').style.backgroundColor =
+          `rgba(250, 237, 211, ${ease(1.7, 2.3, t) * .85})`;
+      }
+    },
+    'amended-clause': { html: amendedClause, render: interaction([413, 494], '.rule-item.active', [856, 510]) },
+    agreements: { html: agreements, render: interaction([795, 395], '.ask', [1030, 487]) },
+    deadlines: { html: deadlines, render: interaction([388, 521], '.alert-link', [814, 491]) },
+    copilot: { html: copilot, render: interaction([850, 382], '.ask', [751, 429]) },
   });
 })();
