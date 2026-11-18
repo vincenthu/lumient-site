@@ -1,394 +1,187 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Lumient | AI for credit monitoring and reporting</title>
-<meta name="description" content="Lumient reads your agreements, amendments, and loan tape, tracks every rule and number, and flags what needs attention, with the source behind each one.">
-<link rel="icon" href="favicon.png">
-<style>:root{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Lumient | AI for lender reporting and credit monitoring</title>
+  <meta name="description" content="Lumient reads your agreements, loan tapes and reports, does the work, and traces every number to its source.">
+  <link rel="icon" href="favicon.png">
+  <link rel="preload" href="fonts/Onest-Black.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="homepage.css">
+  <script src="homepage.js" defer></script>
 </head>
 <body>
-<style>
-  /* Layout: Ramp-style product stage on a dotted grid inside a deep navy hero; a sample-portfolio ticker; a mixed-size grid of product crops; navy statement band; film; trust list; closing CTA. */
-  :root {
-    --bg: #FFFFFF; --panel: #FFFFFF; --soft: #F3F4F7; --stage: #EEF0F5;
-    --ink: #101C5A; --ink-2: #545A70; --line: #DFE1E8; --grid: #ECEEF3;
-    --navy: #0B1447; --navy-2: #16216A; --on-navy: #F3F5FF; --on-navy-2: #AEB6DE;
-    --accent: #2F48C9; --cta: #C8F25A; --cta-ink: #0B1447;
-    --ok: #1F7A4D; --ok-bg: #E4F2EA; --warn: #8F5B00; --warn-bg: #FBF0D9; --bad: #B42318; --bad-bg: #FBE6E4;
-    --sans: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0E1122; --panel: #141933; --soft: #1A2040; --stage: #11162C; --ink: #E8EAF4; --ink-2: #A4AAC2; --line: #2B3254; --grid: #232A4A;
-      --navy: #070C2E; --navy-2: #121B57; --accent: #8296FF;
-      --ok: #5CC793; --ok-bg: #143426; --warn: #E7B455; --warn-bg: #3A2C10; --bad: #F2867C; --bad-bg: #3D1714; color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #0E1122; --panel: #141933; --soft: #1A2040; --stage: #11162C; --ink: #E8EAF4; --ink-2: #A4AAC2; --line: #2B3254; --grid: #232A4A;
-    --navy: #070C2E; --navy-2: #121B57; --accent: #8296FF;
-    --ok: #5CC793; --ok-bg: #143426; --warn: #E7B455; --warn-bg: #3A2C10; --bad: #F2867C; --bad-bg: #3D1714; color-scheme: dark;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; }
-  .in { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px), 4vw); padding-right: max(16px, env(safe-area-inset-right, 0px), 4vw); }
-  a { color: inherit; text-underline-offset: 4px; }
-  h1, h2, h3.big { font-weight: 700; letter-spacing: -0.025em; text-wrap: balance; margin: 0; }
-  h2 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1.1; }
-  .muted { color: var(--ink-2); }
-  .btn { display: inline-flex; align-items: center; gap: 8px; font: 700 0.95rem var(--sans); text-decoration: none; padding: 12px 18px; border-radius: 6px; border: 1px solid transparent; }
-  .btn-cta { background: var(--cta); color: var(--cta-ink); }
-  .btn-ghost { border-color: rgba(243, 245, 255, 0.35); color: var(--on-navy); }
-  .btn:focus-visible { outline: 2px solid var(--cta); outline-offset: 3px; }
-
-  /* Hero */
-  .hero { background: radial-gradient(1200px 500px at 85% -10%, var(--navy-2), transparent 70%), var(--navy); color: var(--on-navy); }
-  .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 18px; }
-  .nav .logo { display: inline-flex; }
-  .nav .logo img { display: block; height: 32px; width: auto; }
-  .nav nav { display: flex; gap: 26px; font-size: 0.93rem; color: var(--on-navy-2); }
-  .nav nav a { text-decoration: none; }
-  .nav nav a:hover { color: var(--on-navy); }
-  .hero-copy { padding-block: clamp(48px, 7vw, 96px) clamp(36px, 5vw, 56px); display: grid; gap: 22px; }
-  .kicker { font-size: 0.95rem; color: var(--cta); font-weight: 700; }
-  .hero h1 { font-size: clamp(2.4rem, 5.6vw, 4.6rem); line-height: 1.02; max-width: 15ch; }
-  .hero p.sub { margin: 0; color: var(--on-navy-2); font-size: 1.15rem; max-width: 38rem; }
-  .ctas { display: flex; flex-wrap: wrap; gap: 12px; }
-  .stage { position: relative; background-color: var(--stage); background-image: radial-gradient(var(--line) 1px, transparent 1.2px); background-size: 18px 18px; border-radius: 12px 12px 0 0; padding: clamp(14px, 2.4vw, 30px) clamp(12px, 4vw, 56px) 0; color: var(--ink); }
-  .frag { position: absolute; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; font-size: 0.8rem; line-height: 1.4; max-width: 230px; z-index: 2; }
-  .frag b { display: block; font-size: 0.82rem; }
-  .frag .hl { background: color-mix(in srgb, var(--accent) 16%, transparent); }
-  .frag-a { top: -14px; left: clamp(8px, 3vw, 36px); }
-  .frag-b { top: -14px; right: clamp(8px, 3vw, 36px); }
-  .stage .dash { margin-top: 14px; border-radius: 8px 8px 0 0; border-bottom: 0; }
-
-  /* Scroll-driven dashboard */
-  .scrolly { height: 290vh; }
-  .sticky { position: sticky; top: 12px; }
-  .scroll-hint { margin: 0 0 12px; color: var(--on-navy-2); font-size: 0.9rem; }
-  @media (max-width: 860px) {
-    .scrolly { height: 300vh; }
-    .sticky { top: 6px; }
-    .stage { padding: 10px 8px 0; border-radius: 10px 10px 0 0; }
-    .stage .dash { margin-top: 0; padding: 12px; gap: 10px; }
-    .list, .page > div:last-child, .charts .chart:nth-child(2), .dash .note { display: none; }
-    .kv { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-    .kv .src { display: none; }
-    .lead { font-size: 0.98rem; }
-    .tabs button { padding: 6px 10px; font-size: 0.82rem; }
-    .strip { gap: 4px 14px; font-size: 0.82rem; padding-block: 8px; }
-    .strip b { font-size: 1.05rem; }
-    .chart p { display: none; }
-  }
-  @media (max-height: 560px) { .scrolly { height: auto; } .sticky { position: static; } }
-  .mshots { display: none; }
-  @media (max-width: 860px) {
-    .stage .dash { display: none; }
-    .mshots { display: grid; padding-bottom: 10px; }
-    .mshots img { grid-area: 1 / 1; width: 100%; max-width: 100%; max-height: calc(100vh - 90px); object-fit: contain; object-position: top; border-radius: 8px; opacity: 0; transition: opacity 0.35s ease; }
-    .mshots img.on { opacity: 1; }
-  }
-  .dash { touch-action: pan-y; }
-
-  /* Hero carousel */
-  .car { display: grid; gap: 18px; min-width: 0; }
-  .car-track { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
-  .car-track::-webkit-scrollbar { display: none; }
-  .slide { scroll-snap-align: start; display: grid; gap: 18px; align-content: start; min-width: 0; transition: opacity 0.3s ease; }
-  .slide:not(.cur) { opacity: 0.35; }
-  .hero .slide h1, .hero .slide .h1 { margin: 0; font-weight: 700; letter-spacing: -0.025em; font-size: clamp(2.2rem, 5.2vw, 4.4rem); line-height: 1.03; text-wrap: balance; max-width: 15ch; color: var(--on-navy); }
-  .car-nav { display: flex; align-items: center; gap: 14px; }
-  .car-nav button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(243, 245, 255, 0.3); background: transparent; color: var(--on-navy); font-size: 1rem; cursor: pointer; }
-  .car-nav button:focus-visible, .car-dots button:focus-visible { outline: 2px solid var(--cta); outline-offset: 2px; }
-  .car-dots { display: flex; gap: 8px; }
-  .car-dots button { width: 22px; height: 4px; border-radius: 2px; border: 0; padding: 0; background: rgba(243, 245, 255, 0.28); cursor: pointer; }
-  .car-dots button.on { background: var(--cta); width: 34px; }
-  @media (max-width: 860px) { .car-track { grid-auto-columns: 90%; gap: 18px; } #car-prev, #car-next { display: none; } .car-dots button { height: 6px; } }
-
-  /* Ticker */
-  .ticker { border-bottom: 1px solid var(--line); }
-  .ticker .in { display: flex; flex-wrap: wrap; gap: 10px 34px; padding-block: 16px; font-size: 0.85rem; color: var(--ink-2); align-items: baseline; }
-  .ticker b { color: var(--ink); font-size: 1.05rem; font-variant-numeric: tabular-nums; margin-right: 6px; }
-  .ticker .lab { font-weight: 700; color: var(--ink); }
-  /* Sample dashboard */
-  .dash { border: 1px solid var(--line); border-radius: 8px; padding: clamp(14px, 2.2vw, 22px); display: grid; gap: 14px; margin-top: 12px; background: var(--panel); }
-  .dash-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
-  .tabs { display: flex; flex-wrap: wrap; gap: 4px; background: var(--soft); padding: 4px; border-radius: 8px; }
-  .tabs button { font: 600 0.9rem var(--sans); color: var(--ink-2); background: transparent; border: 0; border-radius: 6px; padding: 7px 14px; cursor: pointer; }
-  .tabs button[aria-selected="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
-  .tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .lead { margin: 0; font-weight: 700; font-size: 1.1rem; }
-  .strip { display: flex; flex-wrap: wrap; gap: 6px 22px; border-block: 1px solid var(--line); padding-block: 10px; font-variant-numeric: tabular-nums; font-size: 0.92rem; }
-  .strip div { display: flex; align-items: baseline; gap: 6px; }
-  .strip b { font-size: 1.2rem; }
-  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-  .main { display: grid; grid-template-columns: minmax(0, 270px) minmax(0, 1fr); gap: 18px; align-items: start; }
-  .list { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
-  .dash h3 { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--ink); }
-  .list h3 { padding: 11px 14px 8px; }
-  .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 10px 14px; border-top: 1px solid var(--line); font-size: 0.9rem; }
-  .row.sel { background: var(--soft); }
-  .row.sel .n { font-weight: 700; }
-  .row .why { grid-column: 1 / -1; color: var(--ink-2); font-size: 0.82rem; }
-  .pill { font: 700 0.82rem var(--sans); align-self: center; white-space: nowrap; }
-  .p-ok { color: var(--ok); } .p-warn { color: var(--warn); } .p-bad { color: var(--bad); }
-  .page { display: grid; gap: 14px; min-width: 0; }
-  .ph { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; align-items: baseline; }
-  .ph h4 { margin: 0; font-size: 1.15rem; }
-  .ph span { color: var(--ink-2); font-size: 0.86rem; }
-  .kv { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
-  .kv div { border-top: 1px solid var(--line); padding-top: 6px; min-width: 0; }
-  .kv small { display: block; color: var(--ink-2); font-size: 0.78rem; }
-  .kv b { font-size: 1.05rem; font-variant-numeric: tabular-nums; }
-  .kv .src { color: var(--ink-2); font-size: 0.74rem; }
-  .charts { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 16px; }
-  .chart { min-width: 0; }
-  .chart p { margin: 2px 0 6px; color: var(--ink-2); font-size: 0.82rem; line-height: 1.45; }
-  .dash svg { display: block; width: 100%; height: auto; overflow: visible; }
-  .dash svg text { fill: var(--ink-2); font: 11px var(--sans); }
-  .dash svg .lbl { fill: var(--ink); font-weight: 700; }
-  .items { display: grid; gap: 6px; }
-  .item { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; font-size: 0.88rem; }
-  .item a { color: var(--accent); text-decoration: none; font-size: 0.82rem; }
-  .note { color: var(--ink-2); font-size: 0.8rem; }
-
-
-  .hero-film { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; height: auto; border-radius: 10px; margin-top: 18px; background: var(--navy-2); }
-  .who3 { margin-top: 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-  .who3 article { display: grid; gap: 10px; align-content: start; min-width: 0; background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
-  .who3 img { width: 100%; max-width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 8px; filter: saturate(0.85); }
-  .custom { margin: clamp(40px, 6vw, 64px) 0 0; padding-top: clamp(32px, 5vw, 48px); border-top: 1px solid var(--line); max-width: 48rem; display: grid; gap: 12px; }
-  .custom h3 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.12; letter-spacing: -0.02em; }
-  .custom p { margin: 0; color: var(--ink-2); font-size: 1.15rem; }
-  .who3 h3 { margin: 0; font-size: 1.2rem; }
-  .who3 p { margin: 0; color: var(--ink-2); }
-  @media (max-width: 860px) { .who3 { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
-  /* Feature chapters */
-  .chapter { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 72px); align-items: center; padding-block: clamp(40px, 7vw, 96px); border-bottom: 1px solid var(--line); transition: opacity 0.8s ease, transform 0.8s ease; }
-  .chapter:last-child { border-bottom: 0; }
-  .chapter.flip { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
-  .chapter.flip .ch-media { order: 2; }
-  .ch-media video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 10; height: auto; border-radius: 10px; border: 1px solid var(--line); background: #FFFFFF; }
-  .ch-text { display: grid; gap: 12px; min-width: 0; }
-  .ch-text h3 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.12; letter-spacing: -0.02em; }
-  .ch-text p { margin: 0; color: var(--ink-2); font-size: 1.15rem; max-width: 28rem; }
-  .chapter.pre { opacity: 0; transform: translateY(28px); }
-  @media (max-width: 760px) { .chapter, .chapter.flip { grid-template-columns: minmax(0, 1fr); gap: 18px; } .chapter.flip .ch-media { order: 0; } .chapter:last-child { padding-bottom: 0; } #features > .in { padding-bottom: 40px; } }
-  @media (prefers-reduced-motion: reduce) { .chapter { transition: none; } }
-  /* Scroll-through features */
-  .fscroll { height: calc(var(--n) * 75svh + 100svh); position: relative; }
-  .fsticky { position: sticky; top: 0; min-height: 100svh; display: flex; align-items: center; padding-block: 48px; }
-  .fsticky .in { width: 100%; }
-  .fstage { display: grid; margin-top: 28px; }
-  .fstage .feat { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 4vw, 56px); align-items: center; opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; }
-  .fstage .feat.on { opacity: 1; transform: none; pointer-events: auto; }
-  .fstage .feat video { margin: 0; }
-  .ftext { display: grid; gap: 10px; min-width: 0; }
-  .fnum { color: var(--ink-2); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
-  .ftext h3 { margin: 0; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.15; }
-  .ftext p { margin: 0; color: var(--ink-2); font-size: 1.1rem; }
-  .fbar { margin-top: 28px; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
-  .fbar span { display: block; height: 100%; width: 0; background: var(--ink); transition: width 0.2s linear; }
-  @media (max-width: 760px) { .fstage .feat { grid-template-columns: minmax(0, 1fr); gap: 14px; } .fsticky { padding-block: 20px; } .fstage { margin-top: 16px; } }
-  @media (prefers-reduced-motion: reduce) { .fstage .feat { transition: none; transform: none; } }
-  .demo-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; max-width: 46rem; margin-top: 8px; }
-  .demo-form .full { grid-column: 1 / -1; }
-  .ff { display: grid; gap: 6px; min-width: 0; }
-  .ff label { font-size: 0.9rem; color: var(--on-navy-2); }
-  .ff select option { color: #101C5A; }
-  .ff input, .ff textarea, .ff select { font: 1rem var(--sans); color: var(--on-navy); background: rgba(243, 245, 255, 0.06); border: 1px solid rgba(243, 245, 255, 0.25); border-radius: 6px; padding: 11px 12px; width: 100%; }
-  .ff input:focus-visible, .ff textarea:focus-visible, .ff select:focus-visible { outline: 2px solid var(--cta); outline-offset: 1px; }
-  .demo-form .hp { position: absolute; left: -9999px; }
-  .demo-form .sent { margin: 0; color: var(--cta); font-weight: 700; }
-  @media (max-width: 600px) { .demo-form { grid-template-columns: minmax(0, 1fr); } }
-  .featgrid { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
-  .feat { display: grid; gap: 8px; align-content: start; min-width: 0; }
-  .feat video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 10; height: auto; border-radius: 10px; border: 1px solid var(--line); background: #FFFFFF; margin-bottom: 8px; }
-  .feat h3 { margin: 0; font-size: 1.15rem; }
-  .feat p { margin: 0; color: var(--ink-2); }
-  .feat:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: calc(50% - 16px); }
-  @media (max-width: 760px) { .featgrid { grid-template-columns: minmax(0, 1fr); } .feat:last-child:nth-child(odd) { max-width: none; } }
-  .feats { margin: 28px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
-  .feats li { padding: 16px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; min-width: 0; }
-  .feats b { font-size: 1.08rem; }
-  .feats span { color: var(--ink-2); }
-  @media (max-width: 760px) { .feats { grid-template-columns: minmax(0, 1fr); } }
-  .trustline { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.4; letter-spacing: -0.01em; max-width: 48rem; }
-  /* Full-bleed video hero and band */
-  .vhero { position: relative; min-height: 100svh; display: flex; flex-direction: column; overflow: hidden; background: var(--navy); }
-  .vhero .nav { position: relative; z-index: 2; width: 100%; }
-  .vhero .hero-copy { position: relative; z-index: 2; margin-top: auto; padding-block: 0 clamp(56px, 10vh, 120px); width: 100%; }
-  .bgv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-  @media (max-width: 700px) { .vhero .bgv { object-position: 60% center; } .vband .bgv { object-position: 72% center; } }
-  .scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(7, 12, 46, 0.55) 0%, rgba(7, 12, 46, 0.25) 35%, rgba(7, 12, 46, 0.85) 100%), linear-gradient(90deg, rgba(7, 12, 46, 0.7) 0%, rgba(7, 12, 46, 0) 70%); }
-  .vtoggle { position: absolute; z-index: 3; right: max(16px, env(safe-area-inset-right, 0px), 4vw); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); font: 700 0.8rem var(--sans); color: var(--on-navy); background: rgba(7, 12, 46, 0.5); border: 1px solid rgba(243, 245, 255, 0.35); border-radius: 6px; padding: 6px 10px; cursor: pointer; }
-  .vtoggle:focus-visible { outline: 2px solid var(--cta); outline-offset: 2px; }
-  #film .hero-film { margin-top: 0; }
-  .vband { position: relative; overflow: hidden; background: var(--navy); color: var(--on-navy); }
-  .vband .in { position: relative; z-index: 2; padding-block: clamp(80px, 12vw, 140px); }
-  @media (max-width: 760px) { .vband .in { padding-block: 48px; } }
-  .vband .chip { display: inline-flex; align-items: center; justify-content: center; background: #FFFFFF; border-radius: 10px; height: 56px; padding: 0 20px; }
-  .vband .chip img { height: 26px; opacity: 1; }
-  .vband .chip img[src*="salesforce"] { height: 40px; }
-  .vband .chip.more { color: var(--navy); font-weight: 700; font-size: 1.05rem; }
-  .vband .logos { gap: 12px; }
-  .vband .works { margin-top: clamp(40px, 6vw, 64px); }
-  .vband .works .lbl, .creds .lbl { display: block; font-size: 0.875rem; color: var(--on-navy); opacity: 0.7; margin-bottom: 18px; }
-  .logos { display: flex; flex-wrap: wrap; align-items: center; gap: 28px 44px; }
-  .logos img { height: 26px; width: auto; max-width: 150px; object-fit: contain; opacity: 0.9; }
-  .creds { grid-column: 1 / -1; padding-top: 8px; }
-  .creds .lbl { color: var(--ink-2); opacity: 1; }
-  .creds .logos img { height: 28px; filter: grayscale(1); opacity: 0.75; }
-  .creds .ld { display: none; }
-  .creds .logos img[src*="hbs"] { height: 40px; }
-  .creds .logos { gap: 24px 36px; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .creds .lc { display: none; } :root:not([data-theme="light"]) .creds .ld { display: block; } }
-  :root[data-theme="dark"] .creds .lc { display: none; } :root[data-theme="dark"] .creds .ld { display: block; }
-  @media (max-width: 700px) { .logos { gap: 22px 30px; } .logos img { height: 22px; } }
-  .vband .connects { color: var(--on-navy); opacity: 0.8; margin-top: 20px; max-width: 40rem; font-size: clamp(1rem, 1.4vw, 1.125rem); line-height: 1.6; }
-  .vband .trustline { color: var(--on-navy); font-weight: 700; font-size: clamp(1.5rem, 3.2vw, 2.4rem); max-width: 40rem; }
-  @media (prefers-reduced-motion: reduce) { .bgv { display: none; } .vhero { background: var(--navy) url(bg-montage.jpg) center / cover; } }
-  .rotor { display: grid; }
-  .rot-item { grid-area: 1 / 1; display: grid; gap: 22px; align-content: end; opacity: 0; transition: opacity 0.9s ease; pointer-events: none; }
-  .rot-item.on { opacity: 1; pointer-events: auto; }
-  .rot-item .h1 { margin: 0; font-weight: 700; letter-spacing: -0.025em; font-size: clamp(2.4rem, 5.6vw, 4.6rem); line-height: 1.02; max-width: 15ch; text-wrap: balance; color: var(--on-navy); }
-  /* Product grid */
-  .sec > .in { padding-block: clamp(64px, 9vw, 112px); }
-  #film > .in { padding-bottom: clamp(24px, 3vw, 40px); } #who > .in { padding-top: clamp(24px, 3vw, 40px); padding-bottom: clamp(24px, 3vw, 40px); } #features > .in { padding-top: clamp(40px, 5vw, 64px); }
-  .head { display: grid; gap: 10px; max-width: 44rem; margin-bottom: 36px; }
-  .bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
-  .tile { background: var(--soft); border-radius: 10px; padding: 22px; display: grid; gap: 14px; align-content: start; min-width: 0; overflow: hidden; }
-  .tile h3 { margin: 0; font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
-  .tile h3 span { color: var(--ink-2); font-weight: 400; }
-  .t-wide { grid-column: span 4; } .t-mid { grid-column: span 3; } .t-nar { grid-column: span 2; }
-  .ui { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px; font-size: 0.82rem; line-height: 1.45; min-width: 0; }
-  .doc-flow { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: center; }
-  .doc-line { height: 7px; border-radius: 2px; background: var(--grid); margin: 6px 0; }
-  .arrow { color: var(--ink-2); font-size: 1.3rem; }
-  .fields div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); padding: 5px 0; }
-  .fields div:last-child { border-bottom: 0; }
-  .chain { display: grid; gap: 0; }
-  .chain div { display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: 10px; padding-bottom: 10px; position: relative; }
-  .chain div::before { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--accent); margin-top: 4px; background: var(--panel); }
-  .chain div:not(:last-child)::after { content: ""; position: absolute; left: 6px; top: 16px; bottom: 0; width: 2px; background: var(--line); }
-  .chain s { color: var(--ink-2); }
-  .q { display: grid; gap: 8px; }
-  .q div { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
-  .q div:last-child { border-bottom: 0; padding-bottom: 0; }
-  .approve { font-weight: 700; color: var(--ok); }
-  .pages { position: relative; height: 150px; }
-  .pages .ui { position: absolute; width: 70%; height: 120px; }
-  .pages .ui:nth-child(1) { left: 0; top: 24px; } .pages .ui:nth-child(2) { left: 12%; top: 12px; } .pages .ui:nth-child(3) { left: 24%; top: 0; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chips span { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; font-size: 0.85rem; font-weight: 700; }
-
-  /* Navy statement band */
-  .band { background: var(--navy); color: var(--on-navy); }
-  .band .in { padding-block: clamp(64px, 9vw, 120px); }
-  .band p { margin: 0; font-size: clamp(1.5rem, 3.2vw, 2.5rem); line-height: 1.25; letter-spacing: -0.02em; max-width: 52rem; }
-  .band p span { color: var(--on-navy-2); }
-  .band b { color: var(--cta); font-weight: 700; }
-
-  .film { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
-  .film video { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 9; height: auto; border-radius: 10px; background: var(--soft); border: 1px solid var(--line); }
-  .checks { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
-  .checks li { padding: 18px 0; border-top: 1px solid var(--line); display: grid; gap: 4px; min-width: 0; }
-  .checks b { font-size: 1.08rem; }
-  .checks span { color: var(--ink-2); }
-  .founders { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); border-top: 1px solid var(--line); }
-  .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-  .people p { margin: 0; color: var(--ink-2); }
-  .people .face { display: block; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; margin-bottom: 14px; }
-  .people b { display: block; color: var(--ink); font-size: 1.25rem; margin-bottom: 4px; }
-  .closer { background: var(--navy); color: var(--on-navy); }
-  .closer .in { padding-block: clamp(64px, 9vw, 112px) 28px; display: grid; gap: 18px; }
-  .closer h2 { color: var(--on-navy); max-width: 22ch; }
-  .closer p { margin: 0; color: var(--on-navy-2); }
-  .mail { font-weight: 700; font-size: clamp(1.3rem, 3vw, 2rem); color: var(--on-navy); overflow-wrap: anywhere; }
-  .foot { margin-top: 48px; padding-top: 14px; border-top: 1px solid rgba(243, 245, 255, 0.15); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: var(--on-navy-2); }
-  @media (max-width: 960px) {
-    .bento { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .t-wide, .t-mid { grid-column: span 2; } .t-nar { grid-column: span 1; }
-    .frag { display: none; }
-  }
-  @media (max-width: 860px) {
-    .main, .charts, .film, .founders, .checks, .people { grid-template-columns: minmax(0, 1fr); }
-    .nav nav { display: none; }
-  }
-  @media (max-width: 560px) { .bento { grid-template-columns: minmax(0, 1fr); } .t-wide, .t-mid, .t-nar { grid-column: span 1; } }
-</style>
-
-<header class="hero vhero">
-  <video class="bgv" src="bg-montage.mp4" poster="bg-montage.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
-  <div class="scrim" aria-hidden="true"></div>
-  <div class="in nav">
-    <a class="logo" href="#" aria-label="Lumient home"><img src="logo-white.png" alt="Lumient" width="140" height="40"></a>
-    <nav aria-label="Main"><a href="#who">Who it&rsquo;s for</a><a href="#features">Product</a><a href="#trust">Security</a><a href="#team">Founders</a></nav>
-    <a class="btn btn-cta" href="#contact">Request a demo</a>
+<a class="skip" href="#solutions">Skip to solutions</a>
+<header class="hero" id="home">
+  <video class="hero-bg" data-src="bg-montage.mp4" poster="bg-montage.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <div class="nav-wrap">
+    <div class="in nav">
+      <a class="logo" href="#home" aria-label="Lumient home"><img src="logo-white.png" alt="Lumient" width="140" height="40"></a>
+      <button class="nav-toggle" type="button" aria-label="Navigation menu" aria-expanded="false" aria-controls="primary-nav"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18 M3 12h18 M3 17h18"/></svg></button>
+      <nav aria-label="Main" id="primary-nav">
+        <details class="solutions-menu">
+          <summary>Solutions <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m7 10 5 5 5-5"/></svg></summary>
+          <div class="dropdown">
+            <a href="#report"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z M14 3v5h5 M8 12h8 M8 16h6"/></svg> Report to your funders</a>
+            <a href="#monitor"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V5 M3 18h18 M6 14l4-5 4 3 6-7"/></svg> Monitor your borrowers</a>
+          </div>
+        </details>
+        <a href="#features">Product</a><a href="#trust">Security</a><a href="#team">Founders</a>
+      </nav>
+      <a class="btn btn-cta nav-demo" href="#contact">Request a demo</a>
+    </div>
   </div>
   <div class="in hero-copy">
-    <span class="kicker">AI for credit monitoring and reporting</span>
-    <h1>Keep track of every loan in your portfolio with less spreadsheet work.</h1>
-    <p class="sub">Lumient reads your agreements, amendments, and loan tape, tracks every rule and number, and flags what needs attention, with the source behind each one.</p>
+    <h1>AI for lender reporting and credit monitoring</h1>
+    <p>Lumient reads your agreements, loan tapes and reports, does the work, and traces every number to its source.</p>
+    <div class="hero-actions"><a class="btn btn-cta" href="#contact">Request a demo</a><a href="lumient-film.mp4" class="film-link"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 10 7-10 7z" fill="currentColor" stroke="none"/></svg> Watch product film</a></div>
   </div>
+  <button class="motion-control hero-motion" aria-label="Pause animations" type="button" hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v14 M16 5v14" stroke-width="3"/></svg></button>
 </header>
-
-<section class="sec" id="film">
-  <div class="in"><video class="hero-film" src="lumient-film.mp4" poster="lumient-film-poster.jpg" controls muted playsinline preload="metadata" aria-label="Lumient product film: pricing a deal, then managing it after close"></video></div>
-</section>
-
-
-
-
-
-
-
-
-
-<section class="sec" id="who">
-  <div class="in">
-    <h2>Who we build for</h2>
-    <div class="who3">
-      <article><h3>Venture and growth lenders</h3><p>Know which borrowers are running low on cash. Monthly reports, covenants and runway, checked for you.</p></article>
-      <article><h3>Warehouse and lender finance</h3><p>Check the lender, not just the loans. Financials, certificates and amendments for every company you fund.</p></article>
-      <article><h3>Private credit and direct lenders</h3><p>See who is close to a covenant before the quarter closes. Leverage and coverage, tested under current terms.</p></article>
+<dialog id="film-dialog" aria-label="Lumient product film">
+  <button type="button" class="film-close" aria-label="Close film"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12 M18 6 6 18"/></svg></button>
+  <video data-src="lumient-film.mp4" poster="lumient-film-poster.jpg" controls playsinline preload="none" aria-label="Lumient product film"></video>
+</dialog>
+<main>
+  <section class="solutions in" id="solutions" aria-label="Solutions">
+    <article class="job-card">
+      <div class="job-art report-art" aria-hidden="true">
+        <div class="sheet-back"></div><div class="sheet"><div class="sheet-caption">Borrowing base certificate</div><div class="sheet-line"><span>Eligible balance</span><b>$8,750,000</b></div><div class="sheet-line"><span>Advance rate</span><b>80%</b></div><div class="sheet-total"><span>Borrowing base</span><b>$7,000,000</b></div></div>
+      </div>
+      <div class="job-copy"><h2><a href="#report">Report to your funders</a></h2>
+      <p>Borrowing base certificates, servicing reports, compliance certificates and government filings, built in each funder's format and ready for sign-off.</p>
+      <p class="audience">For specialty lenders, CDFIs and other lenders with warehouse lines and funders.</p></div>
+    </article>
+    <article class="job-card">
+      <div class="job-art monitor-art" aria-hidden="true">
+        <div class="chart-sheet"><div class="sheet-caption">Borrower cash runway</div>
+        <div class="spark"><svg viewBox="0 0 286 64" preserveAspectRatio="none"><path d="M0 10H286 M0 32H286 M0 54H286" fill="none" stroke="#e1e5f1"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46V64H0Z" fill="#e9edfd"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46" fill="none" stroke="#516fc3" stroke-width="2.5"/><circle cx="282" cy="46" r="3.5" fill="#23376d"/></svg></div>
+        <div class="chart-axis"><span>May</span><span>Oct</span></div></div>
+      </div>
+      <div class="job-copy"><h2><a href="#monitor">Monitor your borrowers</a></h2>
+      <p>Track covenants and cash runway, catch missing reports, and bring a credit committee report to every review.</p>
+      <p class="audience">For venture, private credit and warehouse lenders.</p></div>
+    </article>
+  </section>
+  <section class="how" aria-labelledby="how-title"><div class="in">
+    <h2 id="how-title">How it works</h2>
+    <ol class="flow"><li class="flow-step"><div class="flow-head"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v13c0 4 16 4 16 0V5 M4 11c0 4 16 4 16 0"/></svg><h3>Your existing systems</h3></div><ul><li>Microsoft 365 <small>SharePoint, Outlook, Excel, Teams</small></li><li>Loan tapes <small>Alteryx, Snowflake</small></li><li>Your loan platform and NetSuite</li><li>Box</li><li>Custom connectors for any other system</li></ul></li>
+<li class="flow-step"><div class="flow-head"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M7 7h10 M8 12h2 M14 12h2 M8 16h2 M14 16h2"/></svg><h3>Lumient does the work</h3></div><ul><li>Loads your data</li><li>Calculates borrowing bases and covenants</li><li>Explains ineligible loans</li><li>Traces every number and calculation</li><li>Keeps audit records</li></ul></li>
+<li class="flow-step"><div class="flow-head"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z M14 3v5h5 M8 12h8 M8 16h6"/></svg><h3>Lumient generates</h3></div><ul><li>Lender reports <small>Borrowing base and servicing reports</small></li><li>Compliance certificates and filings</li><li>Dashboards and AI tools <small>Power BI, Abacus, Copilot via MCP</small></li><li>Custom outputs <small>ALCO decks, liquidity reports</small></li></ul></li></ol>
+  </div></section>
+  <section class="workflows in" id="features">
+    <div class="workflow-heading"><h2>Workflows</h2><button class="motion-switch" hidden type="button">Pause animations</button></div>
+      <section class="workflow-group" id="report" aria-labelledby="report-title">
+        <h3 class="group-label" id="report-title">Report to your funders</h3>
+        <div class="workflow-layout">
+          <div class="workflow-steps">
+          <article class="workflow-step" id="step-files">
+            <h4><a href="#step-files">Files sort themselves</a></h4>
+            <p>Loan tapes, statements and amendments arrive from email, SharePoint and Box and are matched to the right funder and facility.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-files.mp4" poster="feat-files.jpg" muted loop playsinline preload="none" aria-label="Files sort themselves"></video></div>
+          </article>
+          <article class="workflow-step" id="step-borrowing-base">
+            <h4><a href="#step-borrowing-base">Click any number</a></h4>
+            <p>Every line in a borrowing base opens to show how it was built, down to the loans.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-borrowing-base.mp4" poster="feat-borrowing-base.jpg" muted loop playsinline preload="none" aria-label="Click any number"></video></div>
+          </article>
+          <article class="workflow-step" id="step-ineligible">
+            <h4><a href="#step-ineligible">Every ineligible loan, explained</a></h4>
+            <p>Each excluded loan shows the reason and the rule it fails.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-ineligible.mp4" poster="feat-ineligible.jpg" muted loop playsinline preload="none" aria-label="Every ineligible loan, explained"></video></div>
+          </article>
+          <article class="workflow-step" id="step-template">
+            <h4><a href="#step-template">Trace the math into your template</a></h4>
+            <p>Follow any figure through the formula into your own Excel template.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-template.mp4" poster="feat-template.jpg" muted loop playsinline preload="none" aria-label="Trace the math into your template"></video></div>
+          </article>
+          <article class="workflow-step" id="step-sign-off">
+            <h4><a href="#step-sign-off">Reports ready for sign-off</a></h4>
+            <p>Certificates and reports in each funder&#x27;s format wait for review and approval.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-sign-off.mp4" poster="feat-sign-off.jpg" muted loop playsinline preload="none" aria-label="Reports ready for sign-off"></video></div>
+          </article>
+          </div>
+          <div class="media-column"><div class="media-stage"></div></div>
+        </div>
+      </section>
+      <section class="workflow-group" id="monitor" aria-labelledby="monitor-title">
+        <h3 class="group-label" id="monitor-title">Monitor your borrowers</h3>
+        <div class="workflow-layout">
+          <div class="workflow-steps">
+          <article class="workflow-step" id="step-covenants">
+            <h4><a href="#step-covenants">Know who is close to a covenant breach</a></h4>
+            <p>Every test and deadline, checked against the terms as amended.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-covenants.mp4" poster="feat-covenants.jpg" muted loop playsinline preload="none" aria-label="Know who is close to a covenant breach"></video></div>
+          </article>
+          <article class="workflow-step" id="step-answers">
+            <h4><a href="#step-answers">Get answers from any loan agreement</a></h4>
+            <p>Ask about any agreement and get the answer with the clause it came from.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-answers.mp4" poster="feat-answers.jpg" muted loop playsinline preload="none" aria-label="Get answers from any loan agreement"></video></div>
+          </article>
+          <article class="workflow-step" id="step-warnings">
+            <h4><a href="#step-warnings">Spot trouble before it becomes a breach</a></h4>
+            <p>Falling runway, missing reports and open post-closing items, flagged before they become breaches.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-warnings.mp4" poster="feat-warnings.jpg" muted loop playsinline preload="none" aria-label="Spot trouble before it becomes a breach"></video></div>
+          </article>
+          <article class="workflow-step" id="step-review">
+            <h4><a href="#step-review">Walk into committee with the review done</a></h4>
+            <p>A dashboard and credit committee report built from the packages your borrowers send.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-review.mp4" poster="feat-review.jpg" muted loop playsinline preload="none" aria-label="Walk into committee with the review done"></video></div>
+          </article>
+          <article class="workflow-step" id="step-audit">
+            <h4><a href="#step-audit">Sign off on exceptions with the full history</a></h4>
+            <p>Exceptions wait for sign-off, and every decision is recorded.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-audit.mp4" poster="feat-audit.jpg" muted loop playsinline preload="none" aria-label="Sign off on exceptions with the full history"></video></div>
+          </article>
+          </div>
+          <div class="media-column"><div class="media-stage"></div></div>
+        </div>
+      </section>
+      <section class="workflow-group" id="every-team" aria-labelledby="every-team-title">
+        <h3 class="group-label" id="every-team-title">For every team</h3>
+        <div class="workflow-layout">
+          <div class="workflow-steps">
+          <article class="workflow-step" id="step-amended-clause">
+            <h4><a href="#step-amended-clause">The exact clause, as amended</a></h4>
+            <p>Jump from any rule to the clause, showing the amendment in force.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-amended-clause.mp4" poster="feat-amended-clause.jpg" muted loop playsinline preload="none" aria-label="The exact clause, as amended"></video></div>
+          </article>
+          <article class="workflow-step" id="step-agreements">
+            <h4><a href="#step-agreements">Ask across every agreement</a></h4>
+            <p>Ask “Which funders must we notify on a change in key management?” and see each agreement and clause behind the answer.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-agreements.mp4" poster="feat-agreements.jpg" muted loop playsinline preload="none" aria-label="Ask across every agreement"></video></div>
+          </article>
+          <article class="workflow-step" id="step-deadlines">
+            <h4><a href="#step-deadlines">Alerts before deadlines</a></h4>
+            <p>A Teams or Outlook alert arrives 25 days before a report or covenant test is due.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-deadlines.mp4" poster="feat-deadlines.jpg" muted loop playsinline preload="none" aria-label="Alerts before deadlines"></video></div>
+          </article>
+          <article class="workflow-step" id="step-copilot">
+            <h4><a href="#step-copilot">Works with the AI you already use</a></h4>
+            <p>Ask in Copilot or Abacus and get Lumient’s approved number back through MCP.</p>
+            <div class="clip-slot"><video class="workflow-clip" data-src="feat-copilot.mp4" poster="feat-copilot.jpg" muted loop playsinline preload="none" aria-label="Works with the AI you already use"></video></div>
+          </article>
+          </div>
+          <div class="media-column"><div class="media-stage"></div></div>
+        </div>
+      </section>
+  </section>
+  <section class="comparison"><div class="in">
+    <h2>Why not build it, or buy a big platform?</h2>
+    <div class="points">
+      <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 4 2 2 M4 8l2 2 M5 11l6-6 3 3-6 6z M10 15l5-5 3 3-5 5z M16 16l4 4"/></svg><h3>No migration</h3><p>We connect to what you have and handle setup and every integration.</p></article>
+      <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-5 6 5 6 M16 6l5 6-5 6 M14 4l-4 16"/></svg><h3>The math runs in code</h3><p>The same inputs always give the same answer. Lumient uses the most advanced AI model for each task.</p></article>
+      <article><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 3v6c0 5-4 9-8 11-4-2-8-6-8-11V5z M8 11l3 3 5-5"/></svg><h3>Your permissions and an audit trail</h3><p>Microsoft sign-in and SharePoint access carry over. Every approval and rule change is logged.</p></article>
     </div>
-    <div class="custom"><h3>Custom AI built around your desk</h3><p>Every credit team works a little differently. We build custom, secure AI around your documents and your process, integrate it with the systems you already use and deploy it in your cloud or on a machine in your office.</p></div>
-  </div>
-</section>
-
-<section class="sec" id="features">
-  <div class="in">
-    <h2>What Lumient does</h2>
-    <div class="chapter">
-      <div class="ch-media"><video src="feat-covenants.mp4" poster="feat-covenants.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Know who is close to a covenant breach</h3><p>Every test and deadline, checked against the terms as amended.</p></div>
-    </div>
-    <div class="chapter flip">
-      <div class="ch-media"><video src="feat-answers.mp4" poster="feat-answers.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Get answers from any loan agreement</h3><p>Ask about any agreement and get the answer with the clause it came from.</p></div>
-    </div>
-    <div class="chapter">
-      <div class="ch-media"><video src="feat-warnings.mp4" poster="feat-warnings.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Spot trouble before it becomes a breach</h3><p>Falling runway, missing reports and open post-closing items, flagged before they become breaches.</p></div>
-    </div>
-    <div class="chapter flip">
-      <div class="ch-media"><video src="feat-review.mp4" poster="feat-review.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Walk into committee with the review done</h3><p>A dashboard and credit committee report built from the packages your borrowers send.</p></div>
-    </div>
-    <div class="chapter">
-      <div class="ch-media"><video src="feat-audit.mp4" poster="feat-audit.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-      <div class="ch-text"><h3>Sign off on exceptions with the full history</h3><p>Exceptions wait for sign-off, and every decision is recorded.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="vband" id="trust">
-  <div class="in"><p class="trustline">Your data stays in your cloud. Every number links to the page and clause it came from, and every approval records who signed off.</p><p class="connects">Connects to Salesforce, nCino, Moody&rsquo;s CreditLens, Loan IQ, ACBS, SharePoint, Outlook, Excel and the other systems your team already uses. Read-only, set up in one click.</p><div class="works"><span class="lbl">Works with</span><div class="logos"><span class="chip"><img src="logos/salesforce.svg" alt="Salesforce" loading="lazy"></span><span class="chip"><img src="logos/ncino.svg" alt="nCino" loading="lazy"></span><span class="chip"><img src="logos/moodys.svg" alt="Moody's CreditLens" loading="lazy"></span><span class="chip"><img src="logos/finastra.png" alt="Finastra Loan IQ" loading="lazy"></span><span class="chip"><img src="logos/fis.svg" alt="FIS ACBS" loading="lazy"></span><span class="chip"><img src="logos/sharepoint.svg" alt="Microsoft SharePoint" loading="lazy"></span><span class="chip"><img src="logos/outlook.svg" alt="Microsoft Outlook" loading="lazy"></span><span class="chip"><img src="logos/excel.svg" alt="Microsoft Excel" loading="lazy"></span><span class="chip more">+ more</span></div></div></div>
-</section>
-
+  </div></section>
+  <section class="integrations in" aria-labelledby="connects-title">
+    <div><h2 id="connects-title">Connects to</h2><p>We set up each connection with your team.</p></div>
+    <ul><li><img src="logos/sharepoint.svg" alt="" width="27" height="27" loading="lazy">SharePoint</li><li><img src="logos/outlook.svg" alt="" width="27" height="27" loading="lazy">Outlook</li><li><img src="logos/excel.svg" alt="" width="27" height="27" loading="lazy">Excel</li><li>Teams</li><li>Snowflake</li><li>Power BI</li><li><img class="wordmark" src="logos/salesforce.svg" alt="Salesforce" loading="lazy"></li><li><img class="wordmark" src="logos/ncino.svg" alt="nCino" loading="lazy"></li><li>NetSuite</li><li>Box</li><li>Alteryx</li><li>+ more</li></ul>
+  </section>
+  <section class="security" id="trust"><div class="in">
+    <h2><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8 3v6c0 5-4 9-8 11-4-2-8-6-8-11V5z M8 11l3 3 5-5"/></svg>Security</h2><p>Every number links to the page and clause it came from, every approval records who signed off, and access follows your existing permissions.</p>
+  </div></section>
+</main>
 <section class="sec" id="team">
   <div class="in founders" style="padding-top:clamp(48px,7vw,88px)">
     <h2>Founders</h2>
@@ -423,33 +216,5 @@
     <div class="foot"><span>Lumient Inc., New York</span><span>&copy; 2026</span></div>
   </div>
 </footer>
-
-<script>
-  (function () {
-    if (!('IntersectionObserver' in window)) return;
-    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('pre'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
-    document.querySelectorAll('.chapter').forEach(function (c) { if (c.getBoundingClientRect().top > window.innerHeight) { c.classList.add('pre'); io.observe(c); } });
-  })();
-</script>
-
-<script>
-  (function () {
-    var vids = document.querySelectorAll('.ch-media video');
-    function go(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    vids.forEach(function (v) {
-      v.addEventListener('ended', function () { v.currentTime = 0; go(v); });
-      v.addEventListener('pause', function () { if (!v.ended && v.dataset.vis === '1') setTimeout(function () { if (v.paused) go(v); }, 300); });
-    });
-    if (!('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target; v.dataset.vis = e.isIntersecting ? '1' : '0'; if (e.isIntersecting) go(v); }); }, { threshold: 0.25 });
-    vids.forEach(function (v) { io.observe(v); });
-  })();
-</script>
-
-<script>
-  (function () { try { if (/[?&]sent=1/.test(location.search)) { var m = document.getElementById('df-sent'); if (m) m.hidden = false; } } catch (e) {} })();
-</script>
-
 </body>
 </html>

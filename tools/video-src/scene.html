@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Lumient workflow recording</title>
+<link rel="stylesheet" href="scene.css">
+<main id="scene"></main>
+<script>
+  // A single clock drives every on-screen element in both preview and capture.
+  window.motion = {
+    ease(start, end, time) {
+      const p = Math.max(0, Math.min(1, (time - start) / (end - start)));
+      return p * p * (3 - 2 * p);
+    },
+    cursor(root, x, y, press = 0, opacity = 1) {
+      const pointer = root.querySelector('.recording-cursor');
+      pointer.style.transform = `translate(${x}px, ${y}px)`;
+      pointer.style.opacity = opacity;
+      pointer.querySelector('.cursor-pulse').style.transform = `scale(${0.4 + press})`;
+      pointer.querySelector('.cursor-pulse').style.opacity = Math.sin(Math.PI * press) * 0.65;
+    }
+  };
+</script>
+<script src="funder.js"></script>
+<script src="shared.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const name = params.get('scene') || 'files';
+  const scene = window.scenes[name];
+  if (!scene) throw new Error('Unknown workflow ' + name);
+  const root = document.querySelector('#scene');
+  root.innerHTML = scene.html + `
+    <div class="recording-cursor" aria-hidden="true">
+      <div class="cursor-pulse"></div>
+      <svg viewBox="0 0 28 35" width="28" height="35">
+        <path d="M2 2 L2 27 L9 21 L14 32 L19 30 L14 19 L24 18 Z"
+              fill="#192144" stroke="white" stroke-width="2.3" stroke-linejoin="round"/>
+      </svg>
+    </div>`;
+  window.renderFrame = time => scene.render(time, root);
+  if (params.has('capture')) {
+    renderFrame(0);
+  } else if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    renderFrame(3.4);
+  } else {
+    const start = performance.now();
+    function animate(now) {
+      renderFrame(((now - start) / 1000) % 5);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  }
+</script>
+</html>
