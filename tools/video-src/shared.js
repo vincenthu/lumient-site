@@ -128,7 +128,7 @@
       </article>
     </div>`);
 
-  const copilot = screen('Microsoft Copilot', 'Meadow Lane Lending · Connected to Lumient', `
+  const copilot = screen('Abacus', 'Meadow Lane Lending · Connected to Lumient through MCP', `
     <div class="prompt"><span>What is the approved October borrowing base for Warehouse A?</span><span class="ask">Ask</span></div>
     <div class="response">
       <div class="approved"><strong>$7,000,000</strong><span>Approved</span></div>
