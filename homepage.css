@@ -34,19 +34,19 @@ body { margin: 0; background: white; color: var(--ink); font: 400 var(--body-siz
 .in { width: min(calc(100% - 2 * var(--gutter)), 1248px); margin-inline: auto; }
 img { max-width: 100%; }
 h1, h2, h3, h4, p { margin: 0; }
-h1, h2, .flow-step h3, .points h3, .workflow-step h4, .people b {
+h1, h2, .flow-step h3, .points h3, .workflow-step h4, .people b, .group-label {
   font: 400 var(--item-size)/1.12 var(--serif);
   font-kerning: normal;
-  letter-spacing: .005em;
+  letter-spacing: -.005em;
   text-wrap: balance;
 }
 h2 { font-size: var(--major-size); }
-.integrations h2, .security h2, .founders h2 { font-size: var(--minor-size); }
+.integrations h2, .founders h2 { font-size: var(--minor-size); }
 a { color: inherit; text-underline-offset: .2em; }
 button, summary { cursor: pointer; }
 button, input, select, textarea { font: inherit; color: inherit; }
 .btn, button, .nav nav, .sheet-caption, .sheet-line, .sheet-total, .chart-axis,
-.audience, .flow-step small, .group-label, .creds .lbl, .ff label, .foot, th { letter-spacing: .01em; }
+.audience, .flow-step small, .creds .lbl, .ff label, .foot, th { letter-spacing: .005em; }
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 .icon { width: 24px; height: 24px; flex: none; }
@@ -95,8 +95,8 @@ details[open] summary .icon { transform: rotate(180deg); }
 }
 
 /* Each section shares a left edge and a fine rule with the next. */
-.solutions, .how > .in, .workflows, .comparison > .in, .integrations, .security > .in, .founders { padding-block: var(--space); }
-.how > .in, .workflows, .comparison > .in, .integrations, .security > .in, .founders { border-top: 1px solid var(--line); }
+.solutions, .how > .in, .workflows, .comparison > .in, .integrations, .founders { padding-block: var(--space); }
+.how > .in, .workflows, .comparison > .in, .integrations, .founders { border-top: 1px solid var(--line); }
 .solutions { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 16px; }
 .job-card {
   --card-line: #c9ced2;
@@ -130,7 +130,7 @@ details[open] summary .icon { transform: rotate(180deg); }
 .job-copy .audience { max-width: none; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--card-line); font-size: .9375rem; }
 .job-copy p:not(.audience) { font-size: 1.125rem; margin-bottom: 18px; }
 
-.flow { --gap: clamp(18px, 2.3vw, 36px); list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); padding: 0; margin: 40px 0 0; }
+.flow { --gap: clamp(56px, 4.4vw, 64px); list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); padding: 0; margin: 40px 0 0; }
 .flow-step { position: relative; padding: clamp(19px, 2.4vw, 35px); border: 1px solid var(--line); }
 .flow-step:nth-child(2) { background: var(--navy); color: white; border-color: var(--navy); }
 .flow-step h3 { padding-bottom: 18px; }
@@ -140,8 +140,8 @@ details[open] summary .icon { transform: rotate(180deg); }
 .flow-step small { display: block; color: var(--muted); font-size: .9375rem; }
 .flow-step:nth-child(2) li { border-color: #ffffff36; }
 .flow-step:not(:last-child)::after, .flow-step:not(:last-child)::before { content: ''; position: absolute; top: 50%; }
-.flow-step:not(:last-child)::after { left: calc(100% + 1px); width: var(--gap); height: 1.5px; background: #737d87; }
-.flow-step:not(:last-child)::before { left: calc(100% + var(--gap) - 8px); width: 9px; height: 9px; border: solid #737d87; border-width: 1.5px 1.5px 0 0; transform: translateY(-40%) rotate(45deg); }
+.flow-step:not(:last-child)::after { left: calc(100% + 7px); width: calc(var(--gap) - 20px); height: 2px; background: var(--navy); transform: translateY(-50%); }
+.flow-step:not(:last-child)::before { left: calc(100% + var(--gap) - 15px); border-block: 5px solid transparent; border-left: 9px solid var(--navy); transform: translateY(-50%); }
 
 @media (min-width: 801px) {
   /* Four shared bands. The last band holds two single-line tasks in the middle. */
@@ -157,8 +157,8 @@ details[open] summary .icon { transform: rotate(180deg); }
 
 .workflow-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .motion-switch { display: inline-flex; align-items: center; gap: 9px; padding: 8px 0 8px 8px; background: transparent; border: 0; color: var(--muted); font-size: .9375rem; text-decoration: underline; text-underline-offset: 4px; }
-.workflow-group { margin-top: clamp(54px, 6vw, 90px); border-top: 1px solid var(--line); padding-top: 24px; }
-.group-label { font: 600 .9375rem/1.4 var(--sans); }
+.workflow-group { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 24px; }
+.group-label { font-size: clamp(2.5rem, 3vw, 2.75rem); color: var(--ink); }
 .creds .lbl { font: 500 .9375rem/1.4 var(--sans); font-kerning: normal; color: var(--muted); }
 .workflow-layout { margin-top: 28px; }
 .workflow-step + .workflow-step { margin-top: 38px; }
@@ -199,11 +199,10 @@ details[open] summary .icon { transform: rotate(180deg); }
 .points article { border-top: 1px solid var(--line); padding-top: 20px; }
 .points p { font-size: 1.0625rem; }
 .points p, .integrations p { margin-top: 12px; color: var(--muted); }
-.integrations, .security .in, .founders { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; gap: 48px; }
+.integrations, .founders { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; gap: 48px; }
 .integrations p { max-width: 27ch; }
 .integrations ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0; border: solid var(--line); border-width: 1px 0 0 1px; }
 .integrations li { min-height: clamp(68px, 6vw, 90px); display: flex; align-items: center; justify-content: center; border: solid var(--line); border-width: 0 1px 1px 0; color: var(--ink); font-size: 1.0625rem; font-weight: 550; }
-.security p { max-width: 45ch; font: 400 clamp(1.625rem, 2vw, 1.75rem)/1.35 var(--sans); font-kerning: normal; }
 .people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 3.4vw, 52px); }
 .people p { color: var(--muted); }
 .people .face { display: block; width: 120px; height: 120px; border-radius: 2px; object-fit: cover; filter: grayscale(1); margin-bottom: 20px; }
@@ -244,10 +243,10 @@ details[open] summary .icon { transform: rotate(180deg); }
 @media (max-width: 800px) {
   :root { --space: 78px; --body-size: 1.0625rem; }
   .hero h1 { font-size: clamp(3.2rem, 8.2vw, 4.5rem); }
-  .flow { grid-template-columns: 1fr; --gap: 24px; }
+  .flow { grid-template-columns: 1fr; --gap: 36px; }
   .flow-step { padding: 24px; }
-  .flow-step:not(:last-child)::after { left: 50%; top: calc(100% + 1px); width: 1.5px; height: var(--gap); }
-  .flow-step:not(:last-child)::before { left: 50%; top: calc(100% + var(--gap) - 8px); transform: translateX(-40%) rotate(135deg); }
+  .flow-step:not(:last-child)::after { left: 50%; top: calc(100% + 5px); width: 2px; height: calc(var(--gap) - 16px); transform: translateX(-50%); }
+  .flow-step:not(:last-child)::before { left: 50%; top: calc(100% + var(--gap) - 12px); border: solid transparent; border-width: 9px 5px 0; border-top-color: var(--navy); transform: translateX(-50%); }
   .workflow-step { scroll-margin-top: 20px; }
   .points { grid-template-columns: 1fr; }
   .points p { max-width: 62ch; }
@@ -272,16 +271,16 @@ details[open] summary .icon { transform: rotate(180deg); }
   .hero h1 { max-width: 15ch; margin-inline: auto; font-size: clamp(3rem, 13.5vw, 4.75rem); }
   .hero h1 span { display: inline; }
   .hero-copy p { margin-block: 18px 22px; }
-  .solutions, .security .in, .people { grid-template-columns: 1fr; }
+  .solutions, .people { grid-template-columns: 1fr; }
   .sheet { padding-inline: 12px; }
   .sheet-caption { font-size: 1rem; }
   .flow, .points { margin-top: 28px; }
   .workflow-layout { margin-top: 22px; }
-  .workflow-group + .workflow-group { margin-top: 54px; }
+  .group-label { font-size: 1.875rem; }
   .workflow-heading { align-items: baseline; }
   .workflow-step h4 { max-width: 23ch; }
   .integrations ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .security .in, .founders { gap: 25px; }
+  .founders { gap: 25px; }
   .people { gap: 32px; }
   .creds { margin-top: 8px; padding-top: 20px; }
   .logos img { max-width: 105px; height: 18px; }
