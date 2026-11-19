@@ -91,21 +91,14 @@
   </script>
 </head>
 <body>
-<a class="skip" href="#solutions">Skip to solutions</a>
+<a class="skip" href="#product">Skip to product</a>
 <header class="hero" id="home">
   <div class="nav-wrap">
     <div class="in nav">
       <a class="logo" href="#home" aria-label="Lumient home"><img src="logo-white.png" alt="Lumient" width="600" height="172"></a>
       <button class="nav-toggle" type="button" aria-label="Navigation menu" aria-expanded="false" aria-controls="primary-nav"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18 M3 12h18 M3 17h18"/></svg></button>
       <nav aria-label="Main" id="primary-nav">
-        <details class="solutions-menu">
-          <summary>Solutions <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m7 10 5 5 5-5"/></svg></summary>
-          <div class="dropdown">
-            <a href="#report"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10l4 4v14H5z M14 3v5h5 M8 12h8 M8 16h6"/></svg> Report to your funders</a>
-            <a href="#monitor"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V5 M3 18h18 M6 14l4-5 4 3 6-7"/></svg> Monitor your borrowers</a>
-          </div>
-        </details>
-        <a href="#features">Product</a><a href="#team">Founders</a>
+        <a href="#product">Product</a><a href="#team">Founders</a>
       </nav>
       <a class="btn btn-cta nav-demo" href="#contact">Request a demo</a>
     </div>
@@ -119,140 +112,33 @@
     controls muted loop playsinline preload="metadata" aria-label="Lumient product film"></video>
 </header>
 <main>
-  <section class="solutions in" id="solutions" aria-label="Solutions">
-    <article class="job-card">
-      <div class="job-art report-art" aria-hidden="true">
+  <section class="product in" id="product" aria-label="Product">
+    <article class="job-card" id="report">
+      <div class="job-art report-art" role="img" aria-label="Example borrowing base certificate. An 80% advance rate on an eligible balance of $8,750,000 gives a borrowing base of $7,000,000.">
         <div class="sheet-back"></div><div class="sheet"><div class="sheet-caption">Borrowing base certificate</div><div class="sheet-line"><span>Eligible balance</span><b>$8,750,000</b></div><div class="sheet-line"><span>Advance rate</span><b>80%</b></div><div class="sheet-total"><span>Borrowing base</span><b>$7,000,000</b></div></div>
       </div>
-      <div class="job-copy"><h2><a href="#report">Report to your funders</a></h2>
-      <p>Borrowing base certificates, servicing reports and compliance certificates, drafted in each lender's own format. Every number links back to its source, and your team reviews and approves each one.</p>
-      <p class="audience">For specialty lenders and CDFIs reporting to their warehouse lenders and funders.</p></div>
+      <div class="job-copy"><h2>Report to your funders</h2>
+      <p>Borrowing base certificates, servicing reports and compliance certificates, drafted in each lender's own format. Every number links back to its source, and your team reviews and approves each one.</p></div>
     </article>
-    <article class="job-card">
-      <div class="job-art monitor-art" aria-hidden="true">
+    <article class="job-card" id="monitor">
+      <div class="job-art monitor-art" role="img" aria-label="Example borrower cash runway, declining from May to October.">
         <div class="chart-sheet"><div class="sheet-caption">Borrower cash runway</div>
-        <div class="spark"><svg viewBox="0 0 286 64" preserveAspectRatio="none"><path d="M0 10H286 M0 32H286 M0 54H286" fill="none" stroke="#d7dce0"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46V64H0Z" fill="#e1e6eb"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46" fill="none" stroke="#39495c" stroke-width="2.5"/><circle cx="282" cy="46" r="3.5" fill="#182537"/></svg></div>
+        <div class="spark"><svg viewBox="0 0 286 64" preserveAspectRatio="none"><path d="M0 10H286 M0 32H286 M0 54H286" fill="none" stroke="#d7dce0"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46V64H0Z" fill="#eaf8d1"/><path d="M0 17L57 22 114 19 171 31 228 35 282 46" fill="none" stroke="#101b36" stroke-width="2.5"/><circle cx="282" cy="46" r="3.5" fill="#101b36"/></svg></div>
         <div class="chart-axis"><span>May</span><span>Oct</span></div></div>
       </div>
-      <div class="job-copy"><h2><a href="#monitor">Monitor your borrowers</a></h2>
-      <p>Keep track of every loan in your portfolio with less spreadsheet work. Know who is close to a covenant breach and which reports are late.</p>
-      <p class="audience">For venture and growth lenders, warehouse and lender finance, and private credit.</p></div>
+      <div class="job-copy"><h2>Monitor your borrowers</h2>
+      <p>Keep track of every loan in your portfolio with less spreadsheet work. Know who is close to a covenant breach and which reports are late.</p></div>
     </article>
-  </section>
-  <section class="how" aria-labelledby="how-title"><div class="in">
-    <h2 id="how-title">How it works</h2>
-    <ol class="flow"><li class="flow-step"><h3>Your existing systems</h3><ul><li><strong>Microsoft 365</strong> <small>SharePoint, Outlook, Excel</small></li><li><strong>Daily loan tapes</strong> <small>Alteryx, Snowflake</small></li><li><strong>Loan platform</strong> <small>Loan and collateral records</small></li><li><strong>Custom connectors</strong> <small>For any other system you use</small></li></ul></li>
-<li class="flow-step"><h3>Lumient does the work</h3><ul><li>Loads your data</li><li>Calculates borrowing bases</li><li>Explains ineligible loans</li><li>Traces every number/calculation</li><li>Keeps audit records</li></ul></li>
-<li class="flow-step"><h3>Lumient generates</h3><ul><li><strong>Lender reports</strong> <small>Borrowing base, servicing</small></li><li><strong>Compliance</strong> <small>Covenant certificates</small></li><li><strong>Dashboards and AI tools</strong> <small>Abacus (via MCP), Power BI</small></li><li><strong>Custom outputs</strong> <small>ALCO decks, liquidity reports</small></li></ul></li></ol>
-  </div></section>
-  <section class="workflows in" id="features">
-    <div class="workflow-heading"><h2>Workflows</h2><button class="motion-switch" hidden type="button">Pause animations</button></div>
-      <section class="workflow-group" id="report" aria-labelledby="report-title">
-        <h3 class="group-label" id="report-title">Report to your funders</h3>
-        <div class="workflow-layout">
-          <div class="workflow-steps">
-          <article class="workflow-step" id="step-files">
-            <h4><a href="#step-files">Files arrive and are sorted</a></h4>
-            <p>To the right lender and facility, from Alteryx, Outlook and SharePoint.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-files.mp4" poster="feat-files.jpg" muted loop playsinline preload="none" aria-label="Files arrive and are sorted"></video></div>
-          </article>
-          <article class="workflow-step" id="step-borrowing-base">
-            <h4><a href="#step-borrowing-base">Click any number</a></h4>
-            <p>Every term traced to its exact clause, and every calculation explained, step by step.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-borrowing-base.mp4" poster="feat-borrowing-base.jpg" muted loop playsinline preload="none" aria-label="Click any number"></video></div>
-          </article>
-          <article class="workflow-step" id="step-ineligible">
-            <h4><a href="#step-ineligible">See every loan and why it's ineligible</a></h4>
-            <p>Every ineligible loan explained, with the exact rule each one fails.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-ineligible.mp4" poster="feat-ineligible.jpg" muted loop playsinline preload="none" aria-label="See every loan and why it's ineligible"></video></div>
-          </article>
-          <article class="workflow-step" id="step-template">
-            <h4><a href="#step-template">Trace every number/calculation</a></h4>
-            <p>See how the math was done, down to the formula in your Excel template.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-template.mp4" poster="feat-template.jpg" muted loop playsinline preload="none" aria-label="Trace every number/calculation"></video></div>
-          </article>
-          <article class="workflow-step" id="step-sign-off">
-            <h4><a href="#step-sign-off">Certificates and reports ready for sign-off</a></h4>
-            <p>Reports that build themselves, drafted in each lender's own format. Your team reviews and approves each one.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-sign-off.mp4" poster="feat-sign-off.jpg" muted loop playsinline preload="none" aria-label="Certificates and reports ready for sign-off"></video></div>
-          </article>
-          </div>
-          <div class="media-column"><div class="media-stage"></div></div>
+    <article class="job-card" id="trace">
+      <div class="job-art trace-art" role="img" aria-label="Example advance rate of 80%, traced to section 2.1(b) of the sample agreement: 80% of Eligible Receivables.">
+        <div class="source-sheet">
+          <div class="rate"><span class="sheet-caption">Advance rate</span><b>80%</b></div>
+          <div class="source-clause"><strong>Sample agreement §2.1(b)</strong><span>80% of Eligible Receivables</span></div>
         </div>
-      </section>
-      <section class="workflow-group" id="monitor" aria-labelledby="monitor-title">
-        <h3 class="group-label" id="monitor-title">Monitor your borrowers</h3>
-        <div class="workflow-layout">
-          <div class="workflow-steps">
-          <article class="workflow-step" id="step-covenants">
-            <h4><a href="#step-covenants">Know who is close to a covenant breach</a></h4>
-            <p>Every test and deadline, checked against the terms as amended.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-covenants.mp4" poster="feat-covenants.jpg" muted loop playsinline preload="none" aria-label="Know who is close to a covenant breach"></video></div>
-          </article>
-          <article class="workflow-step" id="step-answers">
-            <h4><a href="#step-answers">Get answers from any loan agreement</a></h4>
-            <p>Ask about any agreement and get the answer with the clause it came from.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-answers.mp4" poster="feat-answers.jpg" muted loop playsinline preload="none" aria-label="Get answers from any loan agreement"></video></div>
-          </article>
-          <article class="workflow-step" id="step-warnings">
-            <h4><a href="#step-warnings">Spot trouble before it becomes a breach</a></h4>
-            <p>Falling runway, missing reports and open post-closing items, flagged before they become breaches.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-warnings.mp4" poster="feat-warnings.jpg" muted loop playsinline preload="none" aria-label="Spot trouble before it becomes a breach"></video></div>
-          </article>
-          <article class="workflow-step" id="step-review">
-            <h4><a href="#step-review">Walk into committee with the review done</a></h4>
-            <p>A dashboard and credit committee report built from the packages your borrowers send.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-review.mp4" poster="feat-review.jpg" muted loop playsinline preload="none" aria-label="Walk into committee with the review done"></video></div>
-          </article>
-          <article class="workflow-step" id="step-audit">
-            <h4><a href="#step-audit">Sign off on exceptions with the full history</a></h4>
-            <p>Exceptions wait for sign-off, and every decision is recorded.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-audit.mp4" poster="feat-audit.jpg" muted loop playsinline preload="none" aria-label="Sign off on exceptions with the full history"></video></div>
-          </article>
-          </div>
-          <div class="media-column"><div class="media-stage"></div></div>
-        </div>
-      </section>
-      <section class="workflow-group" id="every-team" aria-labelledby="every-team-title">
-        <h3 class="group-label" id="every-team-title">For every team</h3>
-        <div class="workflow-layout">
-          <div class="workflow-steps">
-          <article class="workflow-step" id="step-amended-clause">
-            <h4><a href="#step-amended-clause">Click to see the exact clause</a></h4>
-            <p>Showing the latest amendment version in force.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-amended-clause.mp4" poster="feat-amended-clause.jpg" muted loop playsinline preload="none" aria-label="Click to see the exact clause"></video></div>
-          </article>
-          <article class="workflow-step" id="step-agreements">
-            <h4><a href="#step-agreements">Ask across every agreement</a></h4>
-            <p>Ask "Which funders must we notify on a change in key management?" and get one answer, traced to the source.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-agreements.mp4" poster="feat-agreements.jpg" muted loop playsinline preload="none" aria-label="Ask across every agreement"></video></div>
-          </article>
-          <article class="workflow-step" id="step-deadlines">
-            <h4><a href="#step-deadlines">Alerts before deadlines</a></h4>
-            <p>A Teams or Outlook alert 25 days before a report or covenant test is due.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-deadlines.mp4" poster="feat-deadlines.jpg" muted loop playsinline preload="none" aria-label="Alerts before deadlines"></video></div>
-          </article>
-          <article class="workflow-step" id="step-copilot">
-            <h4><a href="#step-copilot">Works with the AI you already use</a></h4>
-            <p>Feeds approved numbers to Abacus and Power BI.</p>
-            <div class="clip-slot"><video class="workflow-clip" loading="lazy" data-src="feat-copilot.mp4" poster="feat-copilot.jpg" muted loop playsinline preload="none" aria-label="Works with the AI you already use"></video></div>
-          </article>
-          </div>
-          <div class="media-column"><div class="media-stage"></div></div>
-        </div>
-      </section>
-  </section>
-  <section class="comparison"><div class="in">
-    <h2>You shouldn't have to pay for a full platform <span>when you only use a fraction of it.</span></h2>
-    <div class="points">
-      <article><h3>Up and running fast</h3><p>No migration, no new data entry. We handle the setup and every integration ourselves, so your systems, dashboards and routines stay as they are.</p></article>
-      <article><h3>The math runs in code</h3><p>General AI tools aren't built to produce lender reports you can certify. Lumient runs the rules against every loan in code, so the same inputs always give the same answer, and always uses the most advanced AI model for each task.</p></article>
-      <article><h3>Your permissions and an audit trail</h3><p>Lumient uses your Microsoft sign-in and SharePoint access, so people and their AI only see what they're cleared to see. Every number, rule change and approval is logged.</p></article>
-    </div>
-  </div></section>
-  <section class="integrations in" aria-labelledby="connects-title">
-    <div><h2 id="connects-title">Connects to</h2><p>We handle the setup and every integration ourselves.</p></div>
-    <ul><li>SharePoint</li><li>Outlook</li><li>Excel</li><li>Teams</li><li>Snowflake</li><li>Power BI</li><li>Salesforce</li><li>nCino</li><li>NetSuite</li><li>Box</li><li>Alteryx</li><li>+ more</li></ul>
+      </div>
+      <div class="job-copy"><h2>Click any number</h2>
+      <p>Every term traced to its exact clause, and every calculation explained, step by step.</p></div>
+    </article>
   </section>
 </main>
 <section class="sec" id="team">
