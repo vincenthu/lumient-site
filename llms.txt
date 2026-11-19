@@ -1,0 +1,38 @@
+# Lumient
+
+> AI for lender reporting and credit monitoring
+
+Lumient reads your agreements, amendments, and loan tape, tracks every rule and number, and flags what needs attention, with the source behind each one.
+
+## Report to your funders
+
+For specialty lenders and CDFIs reporting to their warehouse lenders and funders.
+
+- [Report to your funders](https://hellolumient.com/#report): Borrowing base certificates, servicing reports and compliance certificates, drafted in each lender's own format. Every number links back to its source, and your team reviews and approves each one.
+- [See every loan and why it's ineligible](https://hellolumient.com/#step-ineligible): Every ineligible loan explained, with the exact rule each one fails.
+
+## Monitor your borrowers
+
+For venture and growth lenders, warehouse and lender finance, and private credit.
+
+- [Monitor your borrowers](https://hellolumient.com/#monitor): Keep track of every loan in your portfolio with less spreadsheet work. Know who is close to a covenant breach and which reports are late.
+- [Walk into committee with the review done](https://hellolumient.com/#step-review): A dashboard and credit committee report built from the packages your borrowers send.
+
+## For every team
+
+- [Ask across every agreement](https://hellolumient.com/#step-agreements)
+- [Alerts before deadlines](https://hellolumient.com/#step-deadlines)
+- [Works with the AI you already use](https://hellolumient.com/#step-copilot): Feeds approved numbers to Abacus and Power BI.
+
+## Connects to
+
+- [Connects to](https://hellolumient.com/#connects-title): SharePoint, Outlook, Excel, Teams, Snowflake, Power BI, Salesforce, nCino, NetSuite, Box, Alteryx.
+
+## Founders
+
+- [Jessie Zeng](mailto:jessie@hellolumient.com): Co-founder and CEO.
+- [Vincent Hu, CFA](mailto:vincent@hellolumient.com): Co-founder and CTO.
+
+## Request a demo
+
+- [Request a demo](https://hellolumient.com/#contact): Talk to us about your portfolio.

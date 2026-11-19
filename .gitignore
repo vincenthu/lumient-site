@@ -5,3 +5,4 @@ wordmark.svg.txt
 squarespace-baseline-*.md
 tools/.venv/
 tools/video-src/__pycache__/
+tools/lighthouse/
