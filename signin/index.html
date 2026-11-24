@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Sign in | Lumient</title>
+  <meta name="description" content="Find your company&rsquo;s Lumient workspace.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#101b36">
+  <link rel="canonical" href="https://hellolumient.com/signin/">
+  <link rel="icon" href="../favicons/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicons/apple-touch-icon.png">
+  <link rel="preload" href="../fonts/LibreCaslonDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../fonts/SchibstedGrotesk-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../homepage.css">
+  <link rel="stylesheet" href="signin.css">
+  <script src="signin.js" defer></script>
+</head>
+<body class="signin-page">
+  <a class="skip" href="#signin">Skip to sign in</a>
+  <header class="signin-header">
+    <div class="in signin-nav">
+      <a class="logo" href="/" aria-label="Lumient home"><img src="../logo-white.png" alt="Lumient" width="600" height="172"></a>
+      <a class="signin-home" href="/">Lumient home</a>
+    </div>
+  </header>
+  <main class="signin-main" id="signin">
+    <section class="signin-content" aria-labelledby="signin-title">
+      <h1 id="signin-title">Sign in to Lumient</h1>
+      <p class="signin-intro">Enter your work email to find your company&rsquo;s Lumient workspace.</p>
+      <form class="signin-form" id="signin-form">
+        <label for="work-email">Work email</label>
+        <input id="work-email" type="email" autocomplete="email" inputmode="email" spellcheck="false" required>
+        <button class="btn btn-cta" id="signin-submit" type="submit">Continue</button>
+        <p class="signin-status" id="signin-status" role="status" aria-live="polite" hidden></p>
+      </form>
+      <div class="join-team">
+        <h2>New here? Join your team</h2>
+        <p>There is no open sign-up. Invites come from your company&rsquo;s Lumient admin.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="signin-footer in">
+    <span>Lumient Inc., New York</span><span>&copy; 2026</span>
+  </footer>
+</body>
+</html>

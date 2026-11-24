@@ -1,0 +1,164 @@
+.signin-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f8f8;
+}
+
+.signin-header {
+  background: white;
+  border-bottom: 1px solid var(--line);
+}
+
+.signin-nav {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.signin-home {
+  font-size: .9375rem;
+  text-decoration: none;
+}
+
+.signin-home:hover {
+  text-decoration: underline;
+}
+
+.signin-main {
+  width: 100%;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(56px, 10vh, 112px) var(--gutter);
+}
+
+.signin-content {
+  width: min(100%, 510px);
+}
+
+.signin-content h1 {
+  font: 400 clamp(2.75rem, 6vw, 4.5rem)/1.05 var(--serif);
+  letter-spacing: -.005em;
+}
+
+.signin-intro {
+  max-width: 40ch;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.signin-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px 12px;
+  margin-top: 32px;
+}
+
+.signin-form label {
+  grid-column: 1 / -1;
+  font-size: .9375rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.signin-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #92999e;
+  border-radius: 3px;
+  background: white;
+}
+
+.signin-form input:hover {
+  border-color: var(--ink);
+}
+
+.signin-form input:focus {
+  border-color: var(--navy);
+  outline: 2px solid var(--navy);
+  outline-offset: 2px;
+}
+
+.signin-form .btn {
+  min-width: 112px;
+}
+
+.signin-form .btn:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+
+.signin-status {
+  grid-column: 1 / -1;
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.signin-status.is-error {
+  color: #9b2c2c;
+}
+
+.join-team {
+  margin-top: clamp(64px, 9vh, 92px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.join-team h2 {
+  font: 600 1.0625rem/1.4 var(--sans);
+  letter-spacing: 0;
+}
+
+.join-team p {
+  max-width: 46ch;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.signin-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .875rem;
+}
+
+@media (max-width: 560px) {
+  .signin-nav {
+    min-height: 64px;
+  }
+
+  .signin-main {
+    place-items: start center;
+    padding-block: 48px 64px;
+  }
+
+  .signin-content h1 {
+    font-size: clamp(2.625rem, 13vw, 3.5rem);
+  }
+
+  .signin-form {
+    grid-template-columns: 1fr;
+  }
+
+  .signin-form .btn {
+    width: 100%;
+    margin-top: 4px;
+  }
+
+  .join-team {
+    margin-top: 56px;
+  }
+}
